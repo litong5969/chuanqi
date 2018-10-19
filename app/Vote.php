@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vote extends Model
 {
-    //123
+    //1233
 }
