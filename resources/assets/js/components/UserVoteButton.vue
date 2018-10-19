@@ -1,0 +1,37 @@
+<template>
+    <button class="btn"
+            v-bind:class="{'btn-info':voted,'btn-outline-secondary':!voted}"
+            v-text="text"
+            v-on:click="vote">
+    </button>
+</template>
+
+<script>
+    export default {
+
+        props: ['instalment', 'count'],
+        mounted() {
+            axios.post('/api/instalment/' + this.instalment + '/votes/users').then(response => {
+                this.voted = response.data.voted
+            })
+        },
+        data() {
+            return {
+                voted: false
+            }
+        },
+        computed: {
+            text() {
+                return this.count
+            }
+        },
+        methods: {
+            vote() {
+                axios.post('/api/instalment/vote', {'instalment': this.instalment}).then(response => {
+                    this.voted = response.data.voted
+                    response.data.voted ? this.count++ : this.count--
+                })
+            }
+        }
+    }
+</script>
