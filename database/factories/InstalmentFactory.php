@@ -9,6 +9,8 @@ $factory->define(App\Instalment::class, function (Faker $faker) {
         'body' => $faker->paragraph,
         'user_id' => $faker->randomElement($user_ids),
         'article_id' => $faker->randomElement($article_ids),
-        'votes_count'=>$faker->numberBetween(1,2000)
+        'votes_count'=>$faker->numberBetween(1,2000),
+        'created_at'=>$faker->dateTime,
+        'updated_at'=>$faker->dateTime
     ];
 });

@@ -11,5 +11,7 @@ $factory->define(App\Comment::class, function (Faker $faker) {
         'user_id' => $faker->randomElement($user_ids),
         'commentable_id' => $faker->randomElement($article_ids),
         'commentable_type'=> $faker->randomElement($commentable_type),
+        'created_at'=>$faker->dateTime,
+        'updated_at'=>$faker->dateTime
     ];
 });

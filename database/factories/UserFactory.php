@@ -22,7 +22,9 @@ $factory->define(App\User::class, function (Faker $faker) {
         'confirmation_token' => str_random(50),
         'api_token' => str_random(60),
         'is_active'=>'1',
-        'settings'=>[ 'bio'=>$faker->sentence,'weibo'=>$faker->name,'weibo_url'=>$faker->url]
+        'settings'=>[ 'bio'=>$faker->sentence,'weibo'=>$faker->name,'weibo_url'=>$faker->url],
+        'created_at'=>$faker->dateTime,
+        'updated_at'=>$faker->dateTime
         ];
 
 });

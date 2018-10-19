@@ -12,6 +12,8 @@ $factory->define(App\Message::class, function (Faker $faker) {
         'from_user_id' => $fromUserId,
         'to_user_id' => $toUserId,
         'has_read'=>"T",
-        'dialog_id'=>$dialogId
+        'dialog_id'=>$dialogId,
+        'created_at'=>$faker->dateTime,
+        'updated_at'=>$faker->dateTime
     ];
 });
