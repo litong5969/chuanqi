@@ -2713,6 +2713,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['type', 'model', 'count'],
@@ -47468,12 +47470,18 @@ var render = function() {
                           _c("h5", { staticClass: "mt-0" }, [
                             _vm._v(_vm._s(comment.user.name))
                           ]),
-                          _vm._v(
-                            "\n                                " +
-                              _vm._s(comment.body) +
-                              "\n                            "
-                          )
-                        ])
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(_vm._s(comment.body)),
+                            _c("span", { staticClass: "float-right date" }, [
+                              _vm._v(
+                                _vm._s(comment.created_at.substring(0, 10))
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("hr")
                       ])
                     })
                   )

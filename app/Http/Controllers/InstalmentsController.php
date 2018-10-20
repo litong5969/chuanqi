@@ -23,15 +23,15 @@ class instalmentsController extends Controller {
         $this->instalment = $instalment;
     }
 
-    public function store(StoreInstalmentRequest $request, $article)
+    public function store(StoreInstalmentRequest $request)
     {
         $instalment = $this->instalment->create([
-            'article_id' => $article,
+            'article_id' => $request->get('article_id'),
             'user_id' => Auth::id(),
             'body' => $request->get('body'),
         ]);
         $instalment->article()->increment('instalments_count');
-        return back();
+return back();
     }
 
 }

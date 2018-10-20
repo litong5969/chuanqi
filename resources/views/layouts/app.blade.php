@@ -24,6 +24,7 @@
     </script>
 {{--    <meta name="api_token" content="{{Auth::check()?'Bearer '.Auth::user()->api_token:'Bearer '}}">--}}
 <!-- Scripts -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <!-- Fonts -->
@@ -34,9 +35,9 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: #deecfc;">
+    <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: #ceecf0;">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="navbar-brand" href="{{ url('/articles') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -47,7 +48,7 @@
             <!-- 搜索框-->
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="搜索" aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">搜索</button>
+                <button class="btn btn-light my-2 my-sm-0" type="submit">搜索</button>
             </form>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -57,7 +58,7 @@
                 </ul>
 
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto" >
 
                     <!-- Authentication Links -->
                     @guest
@@ -68,33 +69,38 @@
                             <a class="nav-link" href="{{ route('register') }}">{{ __('注册') }}</a>
                         </li>
                     @else
-                        <li class="nav-item dropdown">
+
+                        <li class="nav-item dropdown" style="margin-top: 7px">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <li>
                                 <a class="dropdown-item" href="/setting">
-                                    {{ __('修改资料') }}
-                                </a>
-                                <a class="dropdown-item" href="/notifications">
-                                    {{ __('消息通知') }}
-                                </a>
-                                <a class="dropdown-item" href="/inbox">
-                                    {{ __('收件箱') }}
-                                </a>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <i class="fa fa-id-card-o"></i>    {{ __('修改资料') }}
+                                </a></li>
+                                <li><a class="dropdown-item" href="/notifications">
+                                        <i class="fa fa-bell"></i>    {{ __('消息通知') }}
+                                </a></li>
+                                <li><a class="dropdown-item" href="/inbox">
+                                        <i class="fa fa-envelope-open"></i>    {{ __('收件箱') }}
+                                </a></li>
+                                <hr>
+                                <li><a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('退出') }}
-                                </a>
+                                        <i class="fa fa-sign-out"></i>    {{ __('退出') }}
+                                </a></li>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                <li><form id="logout-form" action="{{ route('logout') }}" method="POST"
                                       style="display: none;">
                                     @csrf
-                                </form>
-                            </div>
+                                </form></li>
+                            </ul>
+                        </li>
+                        <li><img width="50" src=" {{ Auth::user()->avatar }}" alt="" class="rounded-circle">
                         </li>
                     @endguest
                 </ul>
@@ -102,7 +108,7 @@
         </div>
     </nav>
 
-    <main class="py-4">
+    <main class="py-0">
         <div class="container">
             @include('flash::message')
         </div>

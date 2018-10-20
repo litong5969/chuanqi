@@ -2,7 +2,7 @@
 
 @section('content')
     @include('vendor.ueditor.assets')
-    <div class="container">
+    <div class="container py-4">
         <div class="row">
             <div class="col-md-8 col-md-offset-1">
                 <div class="card mb-3">
@@ -23,7 +23,8 @@
                                   count="{{$article->comments()->count()}}">
                         </comments>
                         @if(Auth::check() && Auth::user()->owns($article))
-                            <button class="btn btn-link float-right"><a href="/articles/{{$article->id}}/edit">编辑</a></button>
+                            <button class="btn btn-link float-right"><a href="/articles/{{$article->id}}/edit">编辑</a>
+                            </button>
                             {!! Form::open(['url'=>"/articles/$article->id",'method'=>'DELETE','class'=>'delete-form']) !!}
                             {!! Form::submit('删除',['class'=>'btn btn-link float-right']) !!}
                             {!! Form::close() !!}
@@ -47,33 +48,63 @@
                 </div>
             </div>
 
-            <div class="col-md-8 col-md-offset-1">
+            <div class="col-md-8 col-md-offset-1" id="post">
                 <div class="card mb-3">
                     <div class="card-header">
-                        已传到第{{$article->instalments_count}}棒
+                        已传到第{{$article->instalments->count()+1}}棒
                     </div>
 
                     <div class="card-body">
                         @foreach($article->instalments as $instalment)
                             <div class="media">
-                                <div class="mr-3">
-                                    <user-vote-button instalment="{{$instalment->id}}"
-                                                      count="{{$instalment->votes_count}}"></user-vote-button>
-                                </div>
+                                <a href="#" class="mr-3">
+                                    <img class="media-object rounded" width="64"
+                                         src="{{$instalment->user->avatar}}" alt="64x64">
+                                </a>
                                 <div class="media-body">
                                     <h4 class="mt-0">
                                         <a href="/user/{{$instalment->user->name}}">
                                             {{$instalment->user->name}}
                                         </a>
                                     </h4>
-                                    {!! $instalment->body !!}
+                                    <p>{!! $instalment->body !!}<span class="float-right date">
+                                            {{$article->created_at->format('Y-m-d')}}</span></p>
+
                                     <comments type="instalment" model="{{$instalment->id}}"
                                               count="{{$instalment->comments()->count()}}"></comments>
+
                                 </div>
+                                <div class="mr-3">
+                                    <user-vote-button instalment="{{$instalment->id}}"
+                                                      count="{{$instalment->votes_count}}"></user-vote-button>
+
+                                </div>
+
                             </div>
+                            <hr>
                         @endforeach
+                        <div class="media" v-for="instalment in instalments">
+                            <a href="#" class="mr-3">
+                                <img class="media-object rounded" width="64"
+                                     src="@{{$instalment.avatar}}" alt="64x64">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="mt-0">
+                                    <a href="/user/@{{instalment.name}}">
+                                        @{{instalment.name}}
+                                    </a>
+                                </h4>
+                                @{!! instalment.body !!}
+                            </div>
+                            <div class="mr-3 float-right">
+                                <user-vote-button instalment="@{{instalment.id}}"
+                                                  count="@{{instalment.votes_count}}"></user-vote-button>
+                            </div>
+                        </div>
+
                         @if(Auth::check())
-                            {!! Form::open(['url'=>"/articles/$article->id/instalment"]) !!}
+                            {!! Form::open(['url'=>"/instalment",'v-on:submit'=>'onSubmitForm']) !!}
+                            {!! Form::hidden('article_id',$article->id) !!}
                         <!--- Body Field --->
                             <div class="form-group">
                                 <!-- UE编辑器容器 -->
@@ -103,7 +134,8 @@
                         <div class="media">
                             <div class="mr-3">
                                 <a href="#">
-                                    <img class="rounded" width="36" src="{{$article->user->avatar}}" alt="{{$article->user->name}}">
+                                    <img class="rounded" width="36" src="{{$article->user->avatar}}"
+                                         alt="{{$article->user->name}}">
                                 </a>
                             </div>
                             <div class="media-body">
@@ -144,26 +176,40 @@
 @endsection
 
 @section('js')
-    <!-- 实例化编辑器 -->
-    <script type="text/javascript">
-        var ue = UE.getEditor('container', {
-            toolbars: [
-                ['bold', 'italic', 'underline', 'strikethrough', 'blockquote', 'insertunorderedlist', 'insertorderedlist', 'justifyleft', 'justifycenter', 'justifyright', 'link', 'insertimage', 'fullscreen']
-            ],
-            autoHeightEnabled: true,
-            elementPathEnabled: false,
-            enableContextMenu: false,
-            autoClearEmptyNode: true,
-            initialFrameHeight: 220,
-            wordCount: true,
-            maximumWords: 10000,
-            minFrameHeight: 140,
-            imagePopup: false,
-            autotypeset: {indent: true, imageBlockLine: 'center'},
-        });
-        ue.ready(function () {
-            ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
-        });
-    </script>
+    @include('vue.ue')
+    <script>
+        new Vue({
+            el: '#post',
+            data: {
+                instalments: [],
+                newInstalment: {
+                    name: '{{Auth::user()->name}}',
+                    avatar: '{{Auth::user()->avatar}}',
+                    body: ''
+                },
+                newPost: {
+                    Article_id: '{{$article->id}}',
+                    user_id: '{{Auth::user()->id}}',
+                    body: ''
+                }
+            },
+            methods: {
+                onSubmitForm: function (e) {
+                    e.preventDefault();
+                    var instalment = this.newInstalment;
+                    var post = this.newPost;
+                    post.body = instalment.body;
+                    axios.post('instalment', post, function () {
+                        this.instalments(instalment);
+                    });
+                    this.newInstalment = {
+                        name: '{{Auth::user()->name}}',
+                        avatar: '{{Auth::user()->avatar}}',
+                        body: ''
+                    };
 
+                }
+            }
+        })
+    </script>
 @endsection

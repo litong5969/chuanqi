@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use App\Http\Requests\CreateArticleRequest;
 use App\Repositories\ArticleRepository;
 use function compact;

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -23,12 +23,13 @@
                                             @else
                                                 {{$messageGroup->last()->fromUser->name}}
                                             @endif
-                                        </a>
+                                        </a><span class="inboxcount">({{$messageGroup->count()}})</span>
                                     </h5>
                                     <p>
                                         <a href="/inbox/{{$messageGroup->first()->dialog_id}}">
                                             {{$messageGroup->first()->body}}
                                         </a>
+                                        <span class="date float-right">{{$messageGroup->first()->created_at->format('Y-m-d')}}</span>
                                     </p>
                                 </div>
                             </div>

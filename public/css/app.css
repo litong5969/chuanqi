@@ -11200,3 +11200,51 @@ a.tag:hover {
   background: #deecfc;
 }
 
+.navbar {
+  margin-bottom: 0;
+}
+
+.media-conversation-meta {
+  float: left;
+}
+
+.media-conversation-replies {
+  font-size: 1em;
+  color: #A7B3C2;
+  padding-top: 10px;
+  disploy: block;
+}
+
+.jumbotron {
+  background: #ff7777;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.media-conversation-replies a {
+  font-weight: 700;
+  display: block;
+  text-align: center;
+  color: #4b4b4b;
+  font-size: 1.44em;
+  line-height: 1;
+  margin-bottom: -1px;
+}
+
+.media-body a {
+  color: #4b4b4b;
+}
+
+.date {
+  font-size: .7em;
+  color: #A7B3C2;
+  margin-top: 2px;
+  disploy: block;
+}
+
+.inboxcount {
+  font-size: .9em;
+  color: #393e46;
+  disploy: block;
+}
+

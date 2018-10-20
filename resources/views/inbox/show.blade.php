@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -23,7 +23,7 @@
                                         </h5>
                                         <p>
                                             {{$message->body}}
-                                            <span class="float-right">{{$message->created_at->format('Y-m-d')}}</span>
+                                            <span class="date float-right">{{$message->created_at->format('Y-m-d')}}</span>
                                         </p>
                                     </div>
                                 </div>

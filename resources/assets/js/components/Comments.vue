@@ -20,8 +20,10 @@
                                 <img width="24" class="mr-3" :src="comment.user.avatar">
                                 <div class="media-body">
                                     <h5 class="mt-0">{{comment.user.name}}</h5>
-                                    {{comment.body}}
+                                    <p>{{comment.body}}<span class="float-right date">{{comment.created_at.substring(0,10)}}</span></p>
+
                                 </div>
+                                <hr>
                             </div>
                         </div>
                     </div>

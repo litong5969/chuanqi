@@ -18,6 +18,7 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->text('body');
             $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('comments_count')->default(0);
             $table->integer('followers_count')->default(1);
             $table->integer('instalments_count')->default(0);

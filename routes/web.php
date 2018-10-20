@@ -21,12 +21,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('email/verify/{token}',['as'=>'email.verify','uses'=>'EmailController@verify']);
 
+//Route::paginate('articles', 'ArticlesController@index');
 Route::resource('articles','ArticlesController',['name'=>[
-    'create'=>'question.create',
+    'create'=>'articles.create',
     'show'=>'articles.show',
 ]]);
 
-Route::post('articles/{article}/instalment','InstalmentsController@store');
+//Route::post('articles/{article}/instalment','InstalmentsController@store');
+Route::resource('instalment','InstalmentsController');
+
 
 Route::get('articles/{article}/follow','ArticleFollowController@follow');
 
