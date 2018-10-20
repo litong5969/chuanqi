@@ -51,7 +51,11 @@
             <div class="col-md-8 col-md-offset-1" id="post">
                 <div class="card mb-3">
                     <div class="card-header">
-                        已传到第{{$article->instalments->count()+1}}棒
+                        @if($article->instalments->count()>0)
+                            已传到第{{$article->instalments->count()}}棒
+                        @else
+                            还没有人接棒
+                        @endif
                     </div>
 
                     <div class="card-body">
@@ -83,24 +87,24 @@
                             </div>
                             <hr>
                         @endforeach
-                        <div class="media" v-for="instalment in instalments">
-                            <a href="#" class="mr-3">
-                                <img class="media-object rounded" width="64"
-                                     src="@{{$instalment.avatar}}" alt="64x64">
-                            </a>
-                            <div class="media-body">
-                                <h4 class="mt-0">
-                                    <a href="/user/@{{instalment.name}}">
-                                        @{{instalment.name}}
-                                    </a>
-                                </h4>
-                                @{!! instalment.body !!}
-                            </div>
-                            <div class="mr-3 float-right">
-                                <user-vote-button instalment="@{{instalment.id}}"
-                                                  count="@{{instalment.votes_count}}"></user-vote-button>
-                            </div>
-                        </div>
+                        {{--<div class="media" v-for="instalment in instalments">--}}
+                        {{--<a href="#" class="mr-3">--}}
+                        {{--<img class="media-object rounded" width="64"--}}
+                        {{--src="@{{$instalment.avatar}}" alt="64x64">--}}
+                        {{--</a>--}}
+                        {{--<div class="media-body">--}}
+                        {{--<h4 class="mt-0">--}}
+                        {{--<a href="/user/@{{instalment.name}}">--}}
+                        {{--@{{instalment.name}}--}}
+                        {{--</a>--}}
+                        {{--</h4>--}}
+                        {{--@{!! instalment.body !!}--}}
+                        {{--</div>--}}
+                        {{--<div class="mr-3 float-right">--}}
+                        {{--<user-vote-button instalment="@{{instalment.id}}"--}}
+                        {{--count="@{{instalment.votes_count}}"></user-vote-button>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
 
                         @if(Auth::check())
                             {!! Form::open(['url'=>"/instalment",'v-on:submit'=>'onSubmitForm']) !!}
@@ -177,39 +181,39 @@
 
 @section('js')
     @include('vue.ue')
-    <script>
-        new Vue({
-            el: '#post',
-            data: {
-                instalments: [],
-                newInstalment: {
-                    name: '{{Auth::user()->name}}',
-                    avatar: '{{Auth::user()->avatar}}',
-                    body: ''
-                },
-                newPost: {
-                    Article_id: '{{$article->id}}',
-                    user_id: '{{Auth::user()->id}}',
-                    body: ''
-                }
-            },
-            methods: {
-                onSubmitForm: function (e) {
-                    e.preventDefault();
-                    var instalment = this.newInstalment;
-                    var post = this.newPost;
-                    post.body = instalment.body;
-                    axios.post('instalment', post, function () {
-                        this.instalments(instalment);
-                    });
-                    this.newInstalment = {
-                        name: '{{Auth::user()->name}}',
-                        avatar: '{{Auth::user()->avatar}}',
-                        body: ''
-                    };
+    {{--<script>--}}
+    {{--new Vue({--}}
+    {{--el: '#post',--}}
+    {{--data: {--}}
+    {{--instalments: [],--}}
+    {{--newInstalment: {--}}
+    {{--name: '{{Auth::user()->name}}',--}}
+    {{--avatar: '{{Auth::user()->avatar}}',--}}
+    {{--body: ''--}}
+    {{--},--}}
+    {{--newPost: {--}}
+    {{--Article_id: '{{$article->id}}',--}}
+    {{--user_id: '{{Auth::user()->id}}',--}}
+    {{--body: ''--}}
+    {{--}--}}
+    {{--},--}}
+    {{--methods: {--}}
+    {{--onSubmitForm: function (e) {--}}
+    {{--e.preventDefault();--}}
+    {{--var instalment = this.newInstalment;--}}
+    {{--var post = this.newPost;--}}
+    {{--post.body = instalment.body;--}}
+    {{--axios.post('instalment', post, function () {--}}
+    {{--this.instalments(instalment);--}}
+    {{--});--}}
+    {{--this.newInstalment = {--}}
+    {{--name: '{{Auth::user()->name}}',--}}
+    {{--avatar: '{{Auth::user()->avatar}}',--}}
+    {{--body: ''--}}
+    {{--};--}}
 
-                }
-            }
-        })
-    </script>
+    {{--}--}}
+    {{--}--}}
+    {{--})--}}
+    {{--</script>--}}
 @endsection

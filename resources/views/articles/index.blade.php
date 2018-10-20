@@ -4,7 +4,12 @@
     <div class="jumbotron" style="margin-top:-4px;">
         <div class="container">
             <h1 class="display-4">来啊快活啊
+                @guest
+                    <a class="m-3 btn btn-success btn-lg float-right" href={{route('register')}} role="button">现在注册</a>
+                    <a class="m-3 btn btn-outline-primary btn-lg float-right" href={{route('login')}} role="button">登录</a>
+                    @else
                 <a class="btn btn-primary btn-lg float-right" href={{route('articles.create')}} role="button">创建文章</a>
+            @endguest
             </h1>
             <p class="lead">接力写作</p>
             {{--<hr class="my-4">--}}
@@ -29,7 +34,7 @@
 
                             <div class="media-conversation-meta">
                                     <span class="media-conversation-replies">
-                                        <a href="/articles/{{$article->id}}">{{count($article->comments)}}</a>
+                                        <a href="/articles/{{$article->id}}">{{count($article->instalments)}}</a>
                                         接棒
                                     </span>
                             </div>
