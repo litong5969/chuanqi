@@ -16,8 +16,8 @@
                     </div>
                     <div class="modal-body">
                         <div v-if="comments.length>0">
-                            <div class="media" v-for="comment in comments">
-                                <img width="24" class="mr-3" :src="comment.user.avatar">
+                            <div class="media media-comment" v-for="comment in comments">
+                                <img width="24" class="media-avatar rounded mr-3" :src="comment.user.avatar">
                                 <div class="media-body">
                                     <h5 class="mt-0">{{comment.user.name}}</h5>
                                     <p>{{comment.body}}<span class="float-right date">{{comment.created_at.substring(0,10)}}</span></p>

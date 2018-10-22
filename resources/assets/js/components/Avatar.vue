@@ -11,7 +11,7 @@
                    :params="params"
                    :headers="headers"
                    img-format="png"></my-upload>
-        <img :src="imgDataUrl" width="100px" class="rounded">
+        <img :src="imgDataUrl" style="width: 150px" class="setting-avatar">
         <div style="margin-top:20px;"><butten class="btn btn-outline-dark" @click="toggleShow">修改头像</butten></div>
 
     </div>

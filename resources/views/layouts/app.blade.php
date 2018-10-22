@@ -25,6 +25,7 @@
 {{--    <meta name="api_token" content="{{Auth::check()?'Bearer '.Auth::user()->api_token:'Bearer '}}">--}}
 <!-- Scripts -->
     <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/cards-style.css">
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <!-- Fonts -->
@@ -46,8 +47,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <!-- 搜索框-->
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="搜索" aria-label="Search">
+            <form class="form-inline my-2 my-lg-0" action="{{ url('/search') }}">
+                <input class="form-control mr-sm-2" name="titlesearch" type="search" placeholder="搜索" aria-label="Search">
                 <button class="btn btn-light my-2 my-sm-0" type="submit">搜索</button>
             </form>
 
@@ -108,7 +109,7 @@
         </div>
     </nav>
 
-    <main class="py-0">
+    <main class="py-0  section-gray">
         <div class="container">
             @include('flash::message')
         </div>

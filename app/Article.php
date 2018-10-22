@@ -3,9 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Laravel\Scout\Searchable;
 class Article extends Model
 {
+    use Searchable;
     protected $fillable = [
         'title', 'body', 'user_id'
     ];
@@ -38,5 +39,10 @@ class Article extends Model
     public function scopePublished($query)
     {
         return $query->where('is_hidden', 'F');
+    }
+
+    public function searchableAs()
+    {
+        return 'items_index';
     }
 }

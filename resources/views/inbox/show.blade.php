@@ -13,8 +13,8 @@
                         {!! Form::close() !!}
                         <div class="messages-list">
                             @foreach($messages as $message)
-                                <div class="media">
-                                    <img width="48" class="mr-3 img-thumbnail rounded" src="{{$message->fromUser->avatar}}">
+                                <div class="media media-message">
+                                    <img width="48" class="mr-3 media-avatar img-thumbnail rounded" src="{{$message->fromUser->avatar}}">
                                     <div class="media-body">
                                         <h5 class="mt-0">
                                             <a href="#">

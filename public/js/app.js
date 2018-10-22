@@ -47460,9 +47460,9 @@ var render = function() {
                 ? _c(
                     "div",
                     _vm._l(_vm.comments, function(comment) {
-                      return _c("div", { staticClass: "media" }, [
+                      return _c("div", { staticClass: "media media-comment" }, [
                         _c("img", {
-                          staticClass: "mr-3",
+                          staticClass: "media-avatar rounded mr-3",
                           attrs: { width: "24", src: comment.user.avatar }
                         }),
                         _vm._v(" "),
@@ -48272,8 +48272,9 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("img", {
-        staticClass: "rounded",
-        attrs: { src: _vm.imgDataUrl, width: "100px" }
+        staticClass: "setting-avatar",
+        staticStyle: { width: "150px" },
+        attrs: { src: _vm.imgDataUrl }
       }),
       _vm._v(" "),
       _c(

@@ -9,11 +9,11 @@
                     <div class="card-body">
                         @foreach($messages as $messageGroup)
 
-                            <div class="media {{$messageGroup->first()->shouldAddUnreadClass()?'unread':''}}">
+                            <div class="media media-message {{$messageGroup->first()->shouldAddUnreadClass()?'unread':''}}">
                                 @if(Auth::id()==$messageGroup->last()->from_user_id)
-                                    <img width="48" class="mr-3 rounded" src="{{$messageGroup->last()->toUser->avatar}}">
+                                    <img width="48" class="mr-3 media-avatar rounded" src="{{$messageGroup->last()->toUser->avatar}}">
                                 @else
-                                    <img width="48" class="mr-3 rounded" src="{{$messageGroup->last()->fromUser->avatar}}">
+                                    <img width="48" class="mr-3 media-avatar rounded" src="{{$messageGroup->last()->fromUser->avatar}}">
                                 @endif
                                 <div class="media-body">
                                     <h5 class="mt-0">

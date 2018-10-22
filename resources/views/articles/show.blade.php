@@ -32,24 +32,7 @@
 
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card mb-3">
-                    <div class="card-header question-follow">
-                        <span><h5>{{$article->followers_count}}关注者</h5></span>
-                    </div>
-                    <div class="card-body">
-                        <article-follow-button article="{{$article->id}}"></article-follow-button>
-                        <a href="#editor" class="btn btn-outline-primary float-right">
-                            接下此棒
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-8 col-md-offset-1" id="post">
-                <div class="card mb-3">
+                <div class="card ">
                     <div class="card-header">
                         @if($article->instalments->count()>0)
                             已传到第{{$article->instalments->count()}}棒
@@ -58,11 +41,11 @@
                         @endif
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body card-blog">
                         @foreach($article->instalments as $instalment)
                             <div class="media">
                                 <a href="#" class="mr-3">
-                                    <img class="media-object rounded" width="64"
+                                    <img class="card-avatar rounded"
                                          src="{{$instalment->user->avatar}}" alt="64x64">
                                 </a>
                                 <div class="media-body">
@@ -132,13 +115,27 @@
             <div class="col-md-3">
                 <div class="card mb-3">
                     <div class="card-header question-follow">
-                        <h5>关于作者</h5>
+                        <span><h5>{{$article->followers_count}}关注者</h5></span>
                     </div>
                     <div class="card-body">
+                        <article-follow-button article="{{$article->id}}"></article-follow-button>
+                        <a href="#editor" class="btn btn-outline-primary float-right">
+                            接下此棒
+                        </a>
+                    </div>
+                </div>
+                <div class="card card-profile">
+                    <div class="card-image">
+                        <a href="#"><img class="img" height="250" src="/images/heros/cell1.jpg">
+                            <div class="card-caption"> 村民 lv1 </div>
+                        </a>
+                        <div class="ripple-cont"></div>
+                    </div>
+                    <div class="card-body" style="margin-top: 30px">
                         <div class="media">
                             <div class="mr-3">
                                 <a href="#">
-                                    <img class="rounded" width="36" src="{{$article->user->avatar}}"
+                                    <img class="card-avatar" src="{{$article->user->avatar}}"
                                          alt="{{$article->user->name}}">
                                 </a>
                             </div>
@@ -148,7 +145,15 @@
                                         {{$article->user->name}}
                                     </a>
                                 </h4>
+                                @if($article->user->settings['weibo']!=null)
+                                    <i class="fa fa-weibo" aria-hidden="true"></i><a
+                                            href="{{$article->user->settings['weibo']}}">{{$article->user->settings['weibo']}}</a>
+                                @endif
                             </div>
+                        </div>
+                        <div class="mt-2">
+
+                            <p>{{$article->user->settings['bio']}}</p>
                         </div>
                         <div class="user-statics text-center">
                             <div class="statics-item text-center">

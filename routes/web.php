@@ -32,6 +32,7 @@ Route::resource('instalment','InstalmentsController');
 
 
 Route::get('articles/{article}/follow','ArticleFollowController@follow');
+Route::get('search','SearchController@index');
 
 Route::get('notifications','NotificationsController@index');
 Route::get('notifications/{notification}','NotificationsController@show');

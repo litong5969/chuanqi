@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="jumbotron" style="margin-top:-4px;">
+    <div class="jumbotron jumbotron-shadow" style="margin-top:-4px;">
         <div class="container">
             <h1 class="display-4">来啊快活啊
                 @guest
@@ -17,18 +17,17 @@
             {{--<p class="lead">发发发--}}
             {{--</p>--}}
         </div>
-
     </div>
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="card col-md-9">
+            <div class="card col-md-9 card-blog">
                 @foreach($articles as $article)
                     <div class="media my-4">
                         <div class="mr-3">
                             <a href="">
                                 <img width="64" src="{{$article->user->avatar}}" alt="{{$article->user->name}}"
-                                     class="rounded">
+                                     class="card-avatar rounded">
                             </a>
                         </div>
 
