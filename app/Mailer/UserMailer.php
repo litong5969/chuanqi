@@ -3,13 +3,14 @@
 
 namespace App\Mailer;
 
+use App\User;
 use Auth;
 
 class UserMailer extends Mailer {
     public function followNotifyEmail($email)
     {
         $data = [
-            'url' => 'chuanqi.pao',
+            'url' => env('APP_URL'),
             'name' => Auth::guard('api')->user()->name,
         ];
         $this->sentTo('chuanqi_app_new_user_follow', $email, $data);
