@@ -75,7 +75,7 @@ class ArticlesController extends Controller {
     public function show($id)
     {
         $article = $this->articleRepository->byIdWithTagsAndInstalments($id);//把搜索到的tag内容附加到结果里
-
+dd($article->instalments);
         return view('articles.show', compact('article'));
     }
 

@@ -22,32 +22,37 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="card col-md-9 card-blog">
-                @foreach($articles as $article)
+                @foreach($instalments as $instalment)
                     <div class="media my-4">
                         <div class="mr-3">
                             <a href="">
-                                <img width="64" src="{{$article->user->avatar}}" alt="{{$article->user->name}}"
+                                <img width="64" src="{{$instalment->user->avatar}}" alt="{{$instalment->user->name}}"
                                      class="card-avatar rounded">
                             </a>
                         </div>
 
                             <div class="media-conversation-meta">
                                     <span class="media-conversation-replies">
-                                        <a href="/articles/{{$article->id}}">{{count($article->instalments)}}</a>
-                                        接棒
+                                        第
+                                        <a href="/instalments/{{$instalment->id}}">{{$instalment->leg}}</a>
+                                        棒
                                     </span>
                             </div>
 
                         <div class="media-body ml-3">
                             <h4 class="mt-0">
-                                <a href="/articles/{{$article->id}}">
-                                    {{$article->title}}
+                                <a href="/instalments/{{$instalment->id}}">
+                                    {!!   str_limit($instalment->body, 120, '... ... ') !!}
                                 </a>
-
                             </h4>
-                            <p>{{$article->user->name}}
-                                <t class="date float-right">{{$article->created_at->format('Y-m-d')}}</t>
+
+                            <p>{{$instalment->user->name}}
+                                <t class="date float-right">{{$instalment->created_at->format('Y-m-d')}}</t>
                             </p>
+
+                            <h7 class="mt-0" style="color:#bcbab8">
+                                文章：《{{$instalment->article->title}}》，by {{$instalment->article->user->name}}
+                            </h7>
                         </div>
 
                     </div>

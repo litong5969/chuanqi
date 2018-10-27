@@ -2,7 +2,8 @@
     <button class="btn"
             v-bind:class="{'btn-info':voted,'btn-outline-secondary':!voted}"
             v-text="text"
-            v-on:click="vote">
+            v-on:click="vote"
+    style="width: 60px">
     </button>
 </template>
 

@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'ArticlesController@index');
+Route::get('/', 'InstalmentsController@index');
 
 Route::post('/deploy','DeploymentController@deploy');
 
@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('email/verify/{token}',['as'=>'email.verify','uses'=>'EmailController@verify']);
 
+//Route::get('instalments','InstalmentsController@index');
 //Route::paginate('articles', 'ArticlesController@index');
 Route::resource('articles','ArticlesController',['name'=>[
     'create'=>'articles.create',
@@ -28,7 +29,7 @@ Route::resource('articles','ArticlesController',['name'=>[
 ]]);
 
 //Route::post('articles/{article}/instalment','InstalmentsController@store');
-Route::resource('instalment','InstalmentsController');
+Route::resource('instalments','InstalmentsController');
 
 
 Route::get('articles/{article}/follow','ArticleFollowController@follow');

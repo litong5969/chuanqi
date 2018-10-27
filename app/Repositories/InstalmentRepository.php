@@ -18,6 +18,11 @@ class InstalmentRepository {
         return Instalment::find($id);
     }
 
+    public function getInstalmentsFeed()
+    {
+        return Instalment::published()->latest('created_at')->with('user')->get();
+    }
+
     public function getInstalmentCommentsById($id)
     {
         $instalment = Instalment::with('comments', 'comments.user')->where('id', $id)->first();

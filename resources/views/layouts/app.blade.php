@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="/css/cards-style.css">
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{asset('js/siema.min.js')}}"></script>
     <!-- Fonts -->
 {{--<link rel="dns-prefetch" href="https://fonts.gstatic.com">--}}
 {{--<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">--}}
@@ -38,7 +39,7 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: #ceecf0;">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/articles') }}">
+            <a class="navbar-brand" style="color:#ffffff" href="{{ url('/instalments') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -64,16 +65,16 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('登录') }}</a>
+                            <a class="nav-link" style="color:#ffffff" href="{{ route('login') }}">{{ __('登录') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('注册') }}</a>
+                            <a class="nav-link" style="color:#ffffff" href="{{ route('register') }}">{{ __('注册') }}</a>
                         </li>
                     @else
 
                         <li class="nav-item dropdown" style="margin-top: 7px">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#ffffff" v-pre >
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 

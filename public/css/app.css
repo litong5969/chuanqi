@@ -11196,8 +11196,13 @@ a.tag:hover {
   background: #fff9ea;
 }
 
+.navbar-laravel {
+  background: linear-gradient(100deg, #01aac1, #00649f);
+}
+
 .card-header {
-  background: #deecfc;
+  background: -webkit-gradient(linear, left top, right top, from(#deecfc), to(#b9ceeb));
+  background: linear-gradient(90deg, #deecfc, #b9ceeb);
 }
 
 .navbar {
@@ -11216,9 +11221,10 @@ a.tag:hover {
 }
 
 .jumbotron {
-  background: #ff7777;
+  background: linear-gradient(60deg, #ec407a, #c2185b);
   margin-bottom: 20px;
   color: #fff;
+  margin-top: -4px;
 }
 
 .media-conversation-replies a {

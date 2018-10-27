@@ -34,7 +34,7 @@ class ArticleRepository {
 
     public function getArticlesFeed()
     {
-        return Article::published()->latest('updated_at')->with('user')->get();
+        return Article::published()->latest('created_at')->with('user')->get();
     }
 
     public function getArticleCommentsById($id)

@@ -25,6 +25,7 @@
         "gulp": "^3.9.1",
         "imagemin": "^6.0.0",
         "simditor": "^2.3.19",
-        "vue-image-crop-upload": "^2.5.0"
+        "vue-image-crop-upload": "^2.5.0",
+        "vue2-siema": "^0.2.2"
     }
 }

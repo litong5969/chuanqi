@@ -22,6 +22,7 @@ class CreateArticlesTable extends Migration
             $table->integer('comments_count')->default(0);
             $table->integer('followers_count')->default(1);
             $table->integer('instalments_count')->default(0);
+            $table->integer('votes_count')->default(0);
             $table->string('close_comment',8)->default('F');
             $table->string('is_hidden' )->default('F');
             $table->timestamps();
