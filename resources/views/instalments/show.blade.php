@@ -40,6 +40,7 @@
                         @else
                             还没有人接棒
                         @endif
+                        <h6 class="float-right mt-1">当前世界线：{{$worldLine}}</h6>
                     </div>
 
                     <div class="card-body card-blog">
@@ -56,10 +57,16 @@
                                              src="{{$instal->user->avatar}}" alt="64x64">
                                     </a>
                                     <br>
-                                    <div class="mx-2 center-block">
-                                        <user-vote-button instalment="{{$instal->id}}"
-                                                          count="{{$instal->votes_count}}"></user-vote-button>
-                                    </div>
+                                    @guest
+                                        <div class="mx-2 center-block">
+                                            <a class="btn btn-outline-secondary" style="width: 60px" href={{route('login')}} role="button">{{$instal->votes_count}}</a>
+                                        </div>
+                                    @else
+                                        <div class="mx-2 center-block">
+                                            <user-vote-button instalment="{{$instal->id}}"
+                                                              count="{{$instal->votes_count}}"></user-vote-button>
+                                        </div>
+                                    @endguest
                                 </div>
 
                                 <div class="media-body">
@@ -91,6 +98,8 @@
                         @if(Auth::check())
                             {!! Form::open(['url'=>"/instalments",'v-on:submit'=>'onSubmitForm']) !!}
                             {!! Form::hidden('article_id',$instalment->article->id) !!}
+                            {!! Form::hidden('prev_id',$instalment->id) !!}
+                            {!! Form::hidden('leg',$instalment->leg) !!}
                         <!--- Body Field --->
                             <div class="form-group">
                                 <!-- UE编辑器容器 -->
@@ -117,10 +126,15 @@
                         <span><h5>{{$instalment->article->followers_count}}关注者</h5></span>
                     </div>
                     <div class="card-body">
-                        <article-follow-button article="{{$instalment->article->id}}"></article-follow-button>
-                        <a href="#editor" class="btn btn-outline-primary float-right">
-                            接下此棒
-                        </a>
+                        @guest
+                                <a class="btn btn-primary float-left" href={{route('login')}} role="button">关注该文</a>
+                            <a class="btn btn-outline-primary float-right" href={{route('login')}} role="button">登录接棒</a>
+                        @else
+                            <article-follow-button article="{{$instalment->article->id}}"></article-follow-button>
+                            <a href="#editor" class="btn btn-outline-primary float-right">
+                                接下此棒
+                            </a>
+                        @endguest
                     </div>
                 </div>
                 <div class="card card-profile">
@@ -168,8 +182,14 @@
                                 <div class="statics-count">{{$instalment->article->user->followers_count}}</div>
                             </div>
                         </div>
-                        <user-follow-button class="float-left" user="{{$instalment->article->user_id}}"></user-follow-button>
-                        <send-message class="float-right" user="{{$instalment->article->user_id}}"></send-message>
+                        @guest
+                            <a class="btn btn-primary float-left" href={{route('login')}} role="button">关注TA</a>
+                            <a class="btn btn-outline-primary float-right" href={{route('login')}} role="button">发送私信</a>
+                        @else
+                            <user-follow-button class="float-left"
+                                                user="{{$instalment->article->user_id}}"></user-follow-button>
+                            <send-message class="float-right" user="{{$instalment->article->user_id}}"></send-message>
+                        @endguest
                     </div>
                 </div>
             </div>

@@ -18,6 +18,16 @@ class InstalmentRepository {
         return Instalment::find($id);
     }
 
+    public function maxVotesAllByArticleAndLeg($article, $leg)
+    {
+        return Instalment::where('article_id', $article)->where('leg', $leg)->orderBy('votes_count_all', 'desc')->first();
+    }
+
+//    public function allLastInstalments($article)
+//    {
+//        return Instalment::where('article_id', $article)->where('is_the_last', 'T')->get();
+//    }
+
     public function getInstalmentsFeed()
     {
         return Instalment::published()->latest('created_at')->with('user')->get();
@@ -28,4 +38,8 @@ class InstalmentRepository {
         $instalment = Instalment::with('comments', 'comments.user')->where('id', $id)->first();
         return $instalment->comments;
     }
+//    public function prev()
+//    {
+//    return $this->byId(Instalment::class->prev_instalment);
+//    }
 }

@@ -1,5 +1,5 @@
 <template>
-    <button class="btn"
+    <button class="btn float-left"
             v-bind:class="{'btn-secondary':followed,'btn-primary':!followed}"
             v-text="text"
             v-on:click="follow">

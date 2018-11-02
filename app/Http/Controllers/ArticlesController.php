@@ -53,16 +53,18 @@ class ArticlesController extends Controller {
     public function store(CreateArticleRequest $request)
     {
 
-//        dd($this->articleRepository->normalizeTag($request->get('tags')));
-        $tags = $this->articleRepository->normalizeTag($request->get('tags'));
 
         $data = [
             'title' => $request->get('title'),
             'body' => $request->get('body'),
             'user_id' => Auth::id()];
         $article = $this->articleRepository->create($data);
-        //多对多操作，写入第三张表
-        $article->tags()->attach($tags);
+        if($request->get('tags')!=null){
+            $tags = $this->articleRepository->normalizeTag($request->get('tags'));
+            //多对多操作，写入第三张表
+            $article->tags()->attach($tags);
+        }
+
         return redirect()->route('articles.show', [$article->id]);
     }
 
@@ -75,7 +77,6 @@ class ArticlesController extends Controller {
     public function show($id)
     {
         $article = $this->articleRepository->byIdWithTagsAndInstalments($id);//把搜索到的tag内容附加到结果里
-dd($article->instalments);
         return view('articles.show', compact('article'));
     }
 

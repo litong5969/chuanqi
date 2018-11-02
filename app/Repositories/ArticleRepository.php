@@ -45,6 +45,7 @@ class ArticleRepository {
 
     public function normalizeTag(array $tags)
     {
+
         return collect($tags)->map(function ($tag) {
             if (is_numeric($tag)) {
                 //计数加一

@@ -6,7 +6,7 @@
             <h1 class="display-4">来啊快活啊
                 @guest
                     <a class="m-3 btn btn-success btn-lg float-right" href={{route('register')}} role="button">现在注册</a>
-                    <a class="m-3 btn btn-outline-primary btn-lg float-right" href={{route('login')}} role="button">登录</a>
+                    <a class="m-3 btn btn-primary btn-lg float-right" href={{route('login')}} role="button">登录</a>
                     @else
                 <a class="btn btn-primary btn-lg float-right" href={{route('articles.create')}} role="button">创建文章</a>
             @endguest

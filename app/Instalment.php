@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Instalment extends Model
 {
     protected $fillable = [
-        'article_id', 'body', 'user_id'
+        'article_id', 'body', 'user_id','leg','prev_instalment'
     ];
 
     public function user()

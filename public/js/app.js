@@ -48021,7 +48021,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("button", {
-    staticClass: "btn",
+    staticClass: "btn float-left",
     class: { "btn-secondary": _vm.followed, "btn-primary": !_vm.followed },
     domProps: { textContent: _vm._s(_vm.text) },
     on: { click: _vm.follow }
