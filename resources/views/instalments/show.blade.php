@@ -26,20 +26,20 @@
                                       model="{{$instalment->article->id}}"
                                       count="{{$instalment->article->comments()->count()}}">
                             </comments>
-                            <a class="btn btn-link float-left" style="color:#0a001f;"
+                            <a class="btn btn-link float-left button"
                                href="/articles/{{$instalment->article->id}}"><i
                                         class="fa fa-magic" aria-hidden="true"></i>
                                 在此接棒</a>
+                            @if(Auth::check() && Auth::user()->owns($instalment->article))
+                                <i class="fa fa-pencil float-left icon ml-3" aria-hidden="true"></i>
+                                <a class="btn btn-link float-left button"
+                                            href="/articles/{{$instalment->article->id}}/edit">编辑</a>
+                                <i class="fa fa-times float-left icon  ml-3" aria-hidden="true"></i>
+                                {!! Form::open(['url'=>"/articles/$instalment->article->id",'method'=>'DELETE','class'=>'delete-form float-left']) !!}
+                                {!! Form::submit('删除',['class'=>'btn btn-link float-left button']) !!}
+                                {!! Form::close() !!}
+                            @endif
                         </div>
-                        @if(Auth::check() && Auth::user()->owns($instalment->article))
-                            <button class="btn btn-link float-right"><a
-                                        href="/articles/{{$instalment->article->id}}/edit">编辑</a>
-                            </button>
-                            {!! Form::open(['url'=>"/articles/$instalment->article->id",'method'=>'DELETE','class'=>'delete-form']) !!}
-                            {!! Form::submit('删除',['class'=>'btn btn-link float-right']) !!}
-                            {!! Form::close() !!}
-                        @endif
-
                     </div>
                 </div>
                 <div class="card">

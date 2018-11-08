@@ -208,8 +208,14 @@ CARDS
 .card-function {
     margin-top: -30px;
 }
+
+.card-function .button{
+    color: #0a001f;
+}
+
 .card-function .icon {
-    margin-top: 20px; margin-right: -10px;
+    margin-top: 20px;
+    margin-right: -10px;
 }
 
 .card-blog-header {
@@ -324,9 +330,11 @@ CARDS
 .card-article-profile {
     background: linear-gradient(60deg, #faf6e9, #ece8d9);
 }
+
 .card-worldline {
     background: linear-gradient(60deg, #203541, #092a35);
 }
+
 /* ============ Card Category ============ */
 
 .category {

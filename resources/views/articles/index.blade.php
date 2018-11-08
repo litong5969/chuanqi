@@ -50,8 +50,9 @@
                                 </div>
                                 <div class="media-conversation-meta">
                                     <span class="media-conversation-replies">
+                                        共
                                         <a href="/articles/{{$article->id}}">{{count($article->instalments)}}</a>
-                                        接棒
+                                        棒
                                     </span>
                                 </div>
                                 <div class="media-body ml-3">
