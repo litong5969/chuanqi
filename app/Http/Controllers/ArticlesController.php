@@ -64,7 +64,7 @@ class ArticlesController extends Controller {
             //多对多操作，写入第三张表
             $article->tags()->attach($tags);
         }
-
+            user()->followThis($article->id);
         return redirect()->route('articles.show', [$article->id]);
     }
 

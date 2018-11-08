@@ -33,7 +33,7 @@
                             @if(Auth::check() && Auth::user()->owns($instalment->article))
                                 <i class="fa fa-pencil float-left icon ml-3" aria-hidden="true"></i>
                                 <a class="btn btn-link float-left button"
-                                            href="/articles/{{$instalment->article->id}}/edit">编辑</a>
+                                   href="/articles/{{$instalment->article->id}}/edit">编辑</a>
                                 <i class="fa fa-times float-left icon  ml-3" aria-hidden="true"></i>
                                 {!! Form::open(['url'=>"/articles/$instalment->article->id",'method'=>'DELETE','class'=>'delete-form float-left']) !!}
                                 {!! Form::submit('删除',['class'=>'btn btn-link float-left button']) !!}
@@ -76,7 +76,8 @@
                                     </p>
                                     <div class="card-function ml-1">
                                         <div><i class="fa fa-comments-o float-left icon" aria-hidden="true"></i>
-                                            <comments class="float-left button" type="instalment" model="{{$instal->id}}"
+                                            <comments class="float-left button" type="instalment"
+                                                      model="{{$instal->id}}"
                                                       count="{{$instal->comments()->count()}}"></comments>
                                         </div>
                                         <a class="btn btn-link float-left button" href="/instalments/{{$instal->id}}"><i
@@ -146,8 +147,10 @@
                 @if($instalment->is_the_last=='T')
                     <div class="card mb-3 card-worldline">
                         <div class="card-body">
+                            <h5 class="display-6" style="text-align: center; color:#ffffff;">
+                                当前世界线</h5>
                             <h5 class="display-6" style="text-align: center; color:#ff7100;">
-                                当前世界线<br>{{$worldlineValue}}</h5>
+                                {{$worldlineValue}}</h5>
                         </div>
                     </div>
                 @endif
