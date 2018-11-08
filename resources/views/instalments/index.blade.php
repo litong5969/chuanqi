@@ -51,6 +51,9 @@
                             <p>{{$instalment->user->name}}
                                 <t class="date float-right mr-3">{{$instalment->created_at->format('Y-m-d')}}</t>
                             </p>
+                            {{--@if($instalment->is_the_last=='T')--}}
+                            {{--<p class="btn btn-black">终点</p>--}}
+                                {{--@endif--}}
                         </div>
                     </div>
                 @endforeach

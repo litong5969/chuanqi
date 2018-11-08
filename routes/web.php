@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'InstalmentsController@index');
+Route::get('/', 'InstalmentsController@worldlineIndex');
 
 Route::post('/deploy','DeploymentController@deploy');
 
@@ -30,7 +30,7 @@ Route::resource('articles','ArticlesController',['name'=>[
 
 //Route::post('articles/{article}/instalment','InstalmentsController@store');
 Route::resource('instalments','InstalmentsController');
-
+Route::get('worldlines','InstalmentsController@worldlineIndex');
 
 Route::get('articles/{article}/follow','ArticleFollowController@follow');
 Route::get('search','SearchController@index');

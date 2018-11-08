@@ -77,7 +77,9 @@ class ArticlesController extends Controller {
     public function show($id)
     {
         $article = $this->articleRepository->byIdWithTagsAndInstalments($id);//把搜索到的tag内容附加到结果里
-        return view('articles.show', compact('article'));
+        $worldlineCounts=$this->articleRepository->worldlineCounts($id);
+        $biggestLeg=$this->articleRepository->biggestLeg($id);
+        return view('articles.show', compact('article','worldlineCounts','biggestLeg'));
     }
 
     /**

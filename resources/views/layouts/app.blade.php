@@ -39,7 +39,7 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: #ceecf0;">
         <div class="container">
-            <a class="navbar-brand" style="color:#ffffff" href="{{ url('/instalments') }}">
+            <a class="navbar-brand" style="color:#ffffff" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

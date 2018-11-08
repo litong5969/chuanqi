@@ -2734,7 +2734,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return '#' + this.dialog;
         },
         text: function text() {
-            return this.count + '评论';
+            return this.count + ' 评论';
         }
     },
     methods: {
@@ -2927,6 +2927,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -48092,13 +48093,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("button", {
-    staticClass: "btn",
-    class: { "btn-info": _vm.voted, "btn-outline-secondary": !_vm.voted },
-    staticStyle: { width: "60px" },
-    domProps: { textContent: _vm._s(_vm.text) },
-    on: { click: _vm.vote }
-  })
+  return _c(
+    "a",
+    {
+      staticClass: "btn",
+      class: { "btn-info": _vm.voted, "btn-outline-secondary": !_vm.voted },
+      staticStyle: { width: "60px" },
+      domProps: { textContent: _vm._s(_vm.text) },
+      on: { click: _vm.vote }
+    },
+    [_c("i", { staticClass: "fa fa-magic", attrs: { "aria-hidden": "true" } })]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

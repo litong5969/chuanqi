@@ -24,12 +24,13 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="card col-md-9 card-blog">
+                <!-- Nav tabs -->
                 <ul class="nav nav-tabs mt-3" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/') }}" >最新世界线</a>
+                        <a class="nav-link active" href="#worldline" role="tab" data-toggle="tab">最新世界线</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#articles" role="tab" data-toggle="tab">文章列表</a>
+                        <a class="nav-link" href="{{ url('/articles') }}" >文章列表</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#messages" role="tab" data-toggle="tab">待定</a>
@@ -39,35 +40,47 @@
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane in active" id="articles">
-                        @foreach($articles as $article)
+                    <div role="tabpanel" class="tab-pane in active" id="worldline">
+                        @foreach($instalments as $instalment)
                             <div class="media my-4">
                                 <div class="mr-3">
                                     <a href="">
-                                        <img width="64" src="{{$article->user->avatar}}" alt="{{$article->user->name}}"
+                                        <img width="64" src="{{$instalment->user->avatar}}"
+                                             alt="{{$instalment->user->name}}"
                                              class="card-avatar rounded">
                                     </a>
                                 </div>
+
                                 <div class="media-conversation-meta">
                                     <span class="media-conversation-replies">
-                                        <a href="/articles/{{$article->id}}">{{count($article->instalments)}}</a>
-                                        接棒
+                                        共
+                                        <a href="/instalments/{{$instalment->id}}">{{$instalment->leg}}</a>
+                                        棒
                                     </span>
                                 </div>
-                                <div class="media-body ml-3">
+                                <div class="media-body mx-3">
+                                    <h7 class="mt-0" style="color:#bcbab8">
+                                        文章：《{{$instalment->article->title}}》，by {{$instalment->article->user->name}}
+                                    </h7>
                                     <h4 class="mt-0">
-                                        <a href="/articles/{{$article->id}}">
-                                            {{$article->title}}
+                                        <a href="/instalments/{{$instalment->id}}">
+                                            {!!   str_limit(strip_tags($instalment->body), 120, '... ... ') !!}
                                         </a>
                                     </h4>
-                                    <p>{{$article->user->name}}
-                                        <t class="date float-right">{{$article->created_at->format('Y-m-d')}}</t>
+                                    <p>{{$instalment->user->name}}
+                                        <t class="date float-right mr-3">{{$instalment->created_at->format('Y-m-d')}}</t>
                                     </p>
+                                    {{--@if($instalment->is_the_last=='T')--}}
+                                    {{--<p class="btn btn-black">终点</p>--}}
+                                    {{--@endif--}}
                                 </div>
                             </div>
                             <hr>
                         @endforeach
                     </div>
+                    <div role="tabpanel" class="tab-pane fade" id="articles">...2</div>
+                    <div role="tabpanel" class="tab-pane fade" id="messages">..3.</div>
+                    <div role="tabpanel" class="tab-pane fade" id="settings">..4.</div>
                 </div>
                 {{--<div style="margin:0 auto;">{!! $articles->render() !!}</div>--}}
             </div>

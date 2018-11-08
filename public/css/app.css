@@ -451,19 +451,7 @@ h6,
 }
 
 .display-4 {
-   font-size: 3.5rem;
-   font-weight: 300;
-   line-height: 1.2;
- }
-
-.display-5 {
-  font-size: 2.5rem;
-  font-weight: 300;
-  line-height: 1.2;
-}
-
-.display-6 {
-  font-size: 1.5rem;
+  font-size: 3.5rem;
   font-weight: 300;
   line-height: 1.2;
 }
@@ -11268,5 +11256,29 @@ a.tag:hover {
   font-size: .9em;
   color: #393e46;
   disploy: block;
+}
+
+.btn-black {
+  /*text-align: center; */
+  color: #ff7100;
+  background: linear-gradient(60deg, #203541, #092a35);
+}
+
+.btn-black:hover {
+  color: #ffffff;
+  background-color: #ff7100;
+  border-color: #ff7100;
+}
+
+.display-5 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.display-6 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.2;
 }
 

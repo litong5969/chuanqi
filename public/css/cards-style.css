@@ -208,6 +208,9 @@ CARDS
 .card-function {
     margin-top: -30px;
 }
+.card-function .icon {
+    margin-top: 20px; margin-right: -10px;
+}
 
 .card-blog-header {
     background: linear-gradient(60deg, #bca3ca, #7c4789);

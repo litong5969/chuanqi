@@ -20,7 +20,8 @@
                     </div>
 
                     <div class="actions">
-                        <div>
+                        <div class="card-function ml-1">
+                            <i class="fa fa-comments-o float-left icon" aria-hidden="true"></i>
                             <comments type="article" class="float-left"
                                       model="{{$instalment->article->id}}"
                                       count="{{$instalment->article->comments()->count()}}">
@@ -73,16 +74,15 @@
                                             {{$instal->created_at->format('Y-m-d')}}
                                     </span>
                                     </p>
-                                    <div class="card-function">
-                                        <comments class="float-left" type="instalment" model="{{$instal->id}}"
-                                                  count="{{$instal->comments()->count()}}"></comments>
+                                    <div class="card-function ml-1">
+                                        <div><i class="fa fa-comments-o float-left icon" aria-hidden="true"></i>
+                                            <comments class="float-left" type="instalment" model="{{$instal->id}}"
+                                                      count="{{$instal->comments()->count()}}"></comments>
+                                        </div>
                                         <a class="btn btn-link float-left" href="/instalments/{{$instal->id}}"><i
                                                     class="fa fa-magic" aria-hidden="true"></i>
                                             在此接棒</a>
                                     </div>
-                                </div>
-                                <div class="mx-2">
-
                                 </div>
                                 <hr>
                             </div>
@@ -120,14 +120,14 @@
                             <li><i class="fa-li fa fa-sitemap" aria-hidden="true"></i>
                                 世界线分支数：{{$worldlineCounts}}</li>
                             <li><i class="fa-li fa fa-server  fa-rotate-270" aria-hidden="true"></i>
-                                总接棒数：{{$worldlineCounts}}</li>
+                                总接棒数：{{$instalment->article->instalments->count()}}</li>
                             <li><i class="fa-li fa fa-thumbs-up" aria-hidden="true"></i>
                                 获赞数：{{$instalment->article->votes_count}}</li>
                             <li><i class="fa-li fa fa-users" aria-hidden="true"></i>
                                 关注者：{{$instalment->article->followers_count}}</li>
                             <li><i class="fa-li fa fa-magic" aria-hidden="true"></i>
                                 @if($instalment->article->instalments->count()>0)
-                                    最远已传至第{{$instalment->article->instalments->count()}}棒
+                                    最远已传至第{{$biggestLeg}}棒
                                 @else
                                     还没有人接棒
                                 @endif</li>
@@ -146,7 +146,8 @@
                 @if($instalment->is_the_last=='T')
                     <div class="card mb-3 card-worldline">
                         <div class="card-body">
-                            <h5 class="display-6" style="text-align: center; color:#ff7100;">当前世界线<br>{{$worldlineValue}}</h5>
+                            <h5 class="display-6" style="text-align: center; color:#ff7100;">
+                                当前世界线<br>{{$worldlineValue}}</h5>
                         </div>
                     </div>
                 @endif
@@ -203,7 +204,8 @@
                         @else
                             <user-follow-button class="float-left"
                                                 user="{{$instalment->article->user_id}}"></user-follow-button>
-                            <send-message class="float-right" user="{{$instalment->article->user_id}}"></send-message>
+                            <send-message class="float-right"
+                                          user="{{$instalment->article->user_id}}"></send-message>
                         @endguest
                     </div>
                 </div>

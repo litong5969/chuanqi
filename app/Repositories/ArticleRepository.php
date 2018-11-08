@@ -3,6 +3,7 @@
 
 namespace App\Repositories;
 
+use App\Instalment;
 use App\Tag;
 use App\Article;
 
@@ -55,5 +56,15 @@ class ArticleRepository {
             $newTag = Tag::create(['name' => $tag, 'articles_count' => 1]);
             return $newTag->id;
         })->toArray();
+    }
+
+    public function worldlineCounts($id)
+    {
+        return $worldlineCounts = Instalment::where('article_id', $id)->where('is_the_last', 'T')->get()->count();
+    }
+
+    public function biggestLeg($id)
+    {
+        return Instalment::where('article_id', $id)->max('leg');
     }
 }

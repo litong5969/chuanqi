@@ -51,12 +51,15 @@ class instalmentsController extends Controller {
 
     public function index()
     {
-//        $str=strip_tags(
-//            '<p><span style="color: rgba(0, 0, 0, 0.87); font-family: Raleway, sans-serif; font-size: 14.4px; background-color: rgb(255, 255, 255);">第二棒第<span style="color: rgba(0, 0, 0, 0.87); font-family: Raleway, sans-serif; font-size: 14.4px; background-color: rgb(255, 255, 255);">二</span>棒第<span style="color: rgba(0, 0, 0, 0.87); font-family: Raleway, sans-serif; font-size: 14.4px; background-color: rgb(255, 255, 255);">二</span><span style="color: rgba(0, 0, 0, 0.87); font-family: Raleway, sans-serif; font-size: 14.4px; background-color: rgb(255, 255, 255);"></span>棒</span></p>'
-//        );
-//        dd(str_limit($str, 120, '... ... '));
+
         $instalments = $this->instalment->getInstalmentsFeed();
         return view('instalments.index', compact('instalments'));
+    }
+
+    public function worldlineIndex()
+    {
+        $instalments = $this->instalment->getAllLastInstalments();
+        return view('instalments.worldline', compact('instalments'));
     }
 
     public function show($id)
@@ -73,7 +76,10 @@ class instalmentsController extends Controller {
         $worldlineValue = $this->instalment->worldlineValueById($instalment->id);
         $instalments = array_reverse($instalments);
         $worldlineCounts=$this->instalment->worldlineCounts($instalment->article_id);
-        return view('instalments.show', compact('instalment', 'instalments', 'worldlineValue','worldlineCounts'));
+        $biggestLeg=$this->instalment->biggestLeg($instalment->article_id);
+        return view('instalments.show', compact(
+            'instalment', 'instalments', 'worldlineValue','worldlineCounts','biggestLeg'
+        ));
     }
 
 }

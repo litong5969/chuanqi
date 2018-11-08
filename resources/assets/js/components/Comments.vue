@@ -3,7 +3,7 @@
         <button class="btn btn-link"
                 style="color:#0a001f;"
                 @click="showCommentsFrom"
-                v-text="text"
+                v-text='text'
         >发送私信
         </button>
         <div class="modal fade" :id=dialog tabindex="-1" role="dialog">
@@ -55,7 +55,7 @@
                 return '#' + this.dialog
             },
             text() {
-                return this.count + '评论'
+                return this.count + ' 评论'
             }
         },
         methods: {

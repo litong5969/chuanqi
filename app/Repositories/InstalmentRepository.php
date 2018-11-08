@@ -65,7 +65,17 @@ class InstalmentRepository {
 
     public function getInstalmentsFeed()
     {
-        return Instalment::published()->latest('created_at')->with('user')->get();
+        return Instalment::published()->latest('created_at')->get();
+    }
+
+    public function biggestLeg($id)
+    {
+        return Instalment::where('article_id', $id)->max('leg');
+    }
+
+    public function getAllLastInstalments()
+    {
+        return $worldlineCounts = Instalment::where('is_the_last', 'T')->latest('created_at')->get();
     }
 
     public function getInstalmentCommentsById($id)
