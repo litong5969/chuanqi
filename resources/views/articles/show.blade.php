@@ -18,18 +18,26 @@
 
 
                     <div class="actions">
-                        <comments type="article"
-                                  model="{{$article->id}}"
-                                  count="{{$article->comments()->count()}}">
-                        </comments>
-                        @if(Auth::check() && Auth::user()->owns($article))
-                            <button class="btn btn-link float-right"><a href="/articles/{{$article->id}}/edit">编辑</a>
-                            </button>
-                            {!! Form::open(['url'=>"/articles/$article->id",'method'=>'DELETE','class'=>'delete-form']) !!}
-                            {!! Form::submit('删除',['class'=>'btn btn-link float-right']) !!}
-                            {!! Form::close() !!}
-                        @endif
-
+                        <div class="card-function ml-1">
+                            <i class="fa fa-comments-o float-left icon" aria-hidden="true"></i>
+                            <comments type="article" class="float-left"
+                                      model="{{$article->id}}"
+                                      count="{{$article->comments()->count()}}">
+                            </comments>
+                            <a class="btn btn-link float-left button"
+                               href="/articles/{{$article->id}}"><i
+                                        class="fa fa-magic" aria-hidden="true"></i>
+                                在此接棒</a>
+                            @if(Auth::check() && Auth::user()->owns($article))
+                                <i class="fa fa-pencil float-left icon ml-3" aria-hidden="true"></i>
+                                <a class="btn btn-link float-left button"
+                                   href="/articles/{{$article->id}}/edit">编辑</a>
+                                <i class="fa fa-times float-left icon  ml-3" aria-hidden="true"></i>
+                                {!! Form::open(['url'=>"/articles/$article->id",'method'=>'DELETE','class'=>'delete-form float-left']) !!}
+                                {!! Form::submit('删除',['class'=>'btn btn-link float-left button']) !!}
+                                {!! Form::close() !!}
+                            @endif
+                        </div>
                     </div>
                 </div>
                 <div class="card">
@@ -61,14 +69,14 @@
                                                 {{$instalment->user->name}}
                                             </a>
                                         </h4>
-                                        <p>{!! $instalment->body !!}<span class="float-right date">
-                                            {{$instalment->created_at->format('Y-m-d')}}</span></p>
+                                        <a href="/instalments/{{$instalment->id}}">{!! $instalment->body !!}<span class="float-right date">
+                                            {{$instalment->created_at->format('Y-m-d')}}</span></a>
                                         <div class="card-function ml-1">
-                                            <div><i class="fa fa-comments-o float-left icon" aria-hidden="true"></i>
+                                            <div><i class="fa fa-comments-o float-left icon button" aria-hidden="true"></i>
                                                 <comments class="float-left" type="instalment" model="{{$instalment->id}}"
                                                           count="{{$instalment->comments()->count()}}"></comments>
                                             </div>
-                                            <a class="btn btn-link float-left" href="/instalments/{{$instalment->id}}"><i
+                                            <a class="btn btn-link float-left button" href="/instalments/{{$instalment->id}}"><i
                                                         class="fa fa-magic" aria-hidden="true"></i>
                                                 在此接棒</a>
                                         </div>
@@ -126,7 +134,7 @@
                         @guest
                             <a class="btn btn-primary float-left" href={{route('login')}} role="button">关注该文</a>
                         @else
-                            <article-follow-button article="{{$instalment->article->id}}"></article-follow-button>
+                            <article-follow-button article="{{$article->id}}"></article-follow-button>
                         @endguest
                         {{--<a href="/articles/{{$instalment->article_id}}" class="btn btn-outline-primary float-right">--}}
                             {{--进入文章--}}

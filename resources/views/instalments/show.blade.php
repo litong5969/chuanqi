@@ -76,10 +76,10 @@
                                     </p>
                                     <div class="card-function ml-1">
                                         <div><i class="fa fa-comments-o float-left icon" aria-hidden="true"></i>
-                                            <comments class="float-left" type="instalment" model="{{$instal->id}}"
+                                            <comments class="float-left button" type="instalment" model="{{$instal->id}}"
                                                       count="{{$instal->comments()->count()}}"></comments>
                                         </div>
-                                        <a class="btn btn-link float-left" href="/instalments/{{$instal->id}}"><i
+                                        <a class="btn btn-link float-left button" href="/instalments/{{$instal->id}}"><i
                                                     class="fa fa-magic" aria-hidden="true"></i>
                                             在此接棒</a>
                                     </div>
