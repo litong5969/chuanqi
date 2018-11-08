@@ -1,7 +1,6 @@
 /* This css file is to over write bootstarp css
 ---------------------------------------------------------------------- */
 
-
 /*
 Theme Name: Modern - Bootstrap Cards
 Theme URI: http://adamthemes.com/
@@ -13,7 +12,6 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: card, cards, css3, modern, adamthemes, bootstrap, profile
 *---------------------------------------------------------------------- */
-
 
 /*----------------------------------------------------------------------
 TABLE OF CONTENTS
@@ -36,7 +34,7 @@ TABLE OF CONTENTS
 
 ------------------------------------------------------------------------*/
 
-.setting-avatar{
+.setting-avatar {
     height: 60%;
     position: relative;
     overflow: hidden;
@@ -57,7 +55,6 @@ SECTIONS
     background: #E5E5E5;
     padding: 60px 0 30px 0;
 }
-
 
 /*---------------------------------------------------------------------- /
 CARDS
@@ -133,7 +130,6 @@ CARDS
     font-size: 14px;
 }
 
-
 /* ============ Card Table ============ */
 
 .table {
@@ -202,15 +198,21 @@ CARDS
     color: rgba(255, 255, 255, 0.8);
 }
 
-
 /* ============ Card Blog ============ */
 
 .card-blog {
     margin-top: 0;
+    background: linear-gradient(60deg, #faf6e9, #f0ece2);
 }
-.card-blog-header{
+
+.card-function {
+    margin-top: -30px;
+}
+
+.card-blog-header {
     background: linear-gradient(60deg, #bca3ca, #7c4789);
 }
+
 .card-blog .card-caption {
     margin-top: 5px;
 }
@@ -223,13 +225,14 @@ CARDS
     box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
 
-.card-leg{
+.card-leg {
     font-size: 1.2em;
     color: #A7B3C2;
     margin-top: 2px;
-    disploy:block;
+    disploy: block;
 }
-.card-blog .card-avatar{
+
+.card-blog .card-avatar {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -237,15 +240,16 @@ CARDS
     box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
 
-.blog-signature{
+.blog-signature {
     font-size: .7em;
     color: #A7B3C2;
     margin-top: 2px;
-    disploy:block;
+    disploy: block;
 }
+
 /* ============ Card comment ============ */
 
-.media-comment .media-avatar{
+.media-comment .media-avatar {
     max-width: 50px;
     max-height: 50px;
     border-radius: 50%;
@@ -255,8 +259,8 @@ CARDS
 
 /* ============ Card Message ============ */
 
-.media-message .media-avatar{
-    margin-top:5px;
+.media-message .media-avatar {
+    margin-top: 5px;
     max-width: 50px;
     max-height: 50px;
     border-radius: 50%;
@@ -306,16 +310,20 @@ CARDS
     border-radius: 6px;
 }
 
-
 /* ============ Card Profile ============ */
 
 .card-profile {
     margin-top: 50px;
     text-align: center;
-    background: linear-gradient(60deg, #f9f9f9, #bcbab8);
+    background: linear-gradient(45deg, #f9f9f9, #bcbab8);
 }
 
-
+.card-article-profile {
+    background: linear-gradient(60deg, #faf6e9, #ece8d9);
+}
+.card-worldline {
+    background: linear-gradient(60deg, #203541, #092a35);
+}
 /* ============ Card Category ============ */
 
 .category {
@@ -331,7 +339,6 @@ CARDS
     top: 2px;
     margin-right: 5px;
 }
-
 
 /* ============ Card Author ============ */
 
@@ -351,7 +358,6 @@ CARDS
 .card .author a .ripple-cont {
     display: none;
 }
-
 
 /* ============ Card Product ============ */
 
@@ -397,7 +403,6 @@ CARDS
     font-family: "Roboto Slab", "Times New Roman", serif;
 }
 
-
 /* ============ Card Testimonial ============ */
 
 .card-testimonial {
@@ -416,7 +421,7 @@ CARDS
 .card-testimonial .card-avatar {
     max-width: 70px;
     max-height: 70px;
-    margin: -25px auto 0;
+    /*margin: -25px auto 0;*/
     border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
@@ -457,7 +462,6 @@ CARDS
     margin-bottom: -50px;
 }
 
-
 /* ============ Text Color ============ */
 
 .text-warning {
@@ -487,7 +491,6 @@ CARDS
 .text-gray {
     color: #888;
 }
-
 
 /*---------------------------------------------------------------------- /
 BUTTONS
@@ -553,7 +556,6 @@ BUTTONS
     width: 20px;
 }
 
-
 /* Button Info */
 
 .btn.btn-info {
@@ -567,7 +569,6 @@ BUTTONS
     box-shadow: 0 14px 26px -12px rgba(0, 188, 212, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 188, 212, 0.2);
 }
 
-
 /* Button Danger */
 
 .btn.btn-danger {
@@ -580,7 +581,6 @@ BUTTONS
 .btn.btn-danger:hover {
     box-shadow: 0 14px 26px -12px rgba(244, 67, 54, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(244, 67, 54, 0.2);
 }
-
 
 /* Button Warning */
 
@@ -603,7 +603,6 @@ BUTTONS
     box-shadow: 0 2px 2px 0 rgba(255, 152, 0, 0.14), 0 3px 1px -2px rgba(255, 152, 0, 0.2), 0 1px 5px 0 rgba(255, 152, 0, 0.12);
 }
 
-
 /* Button Rose */
 
 .btn.btn-rose.btn-simple:hover,
@@ -619,7 +618,6 @@ BUTTONS
     color: #e91e63;
     box-shadow: none;
 }
-
 
 /* Button White */
 
@@ -637,11 +635,9 @@ BUTTONS
     box-shadow: none;
 }
 
-
 /*---------------------------------------------------------------------- /
 SOCIAL MEDIA BUTTONS
 ----------------------------------------------------------------------- */
-
 
 /* facebook */
 
@@ -667,7 +663,6 @@ SOCIAL MEDIA BUTTONS
     box-shadow: none;
 }
 
-
 /*twitter*/
 
 .btn.btn-twitter,
@@ -691,7 +686,6 @@ SOCIAL MEDIA BUTTONS
     background-color: transparent;
     box-shadow: none;
 }
-
 
 /*pinterest*/
 
@@ -717,7 +711,6 @@ SOCIAL MEDIA BUTTONS
     box-shadow: none;
 }
 
-
 /*google*/
 
 .btn.btn-google,
@@ -741,7 +734,6 @@ SOCIAL MEDIA BUTTONS
     background-color: transparent;
     box-shadow: none;
 }
-
 
 /*dribbble*/
 
@@ -767,7 +759,6 @@ SOCIAL MEDIA BUTTONS
     box-shadow: none;
 }
 
-
 /*instagram*/
 
 .btn.btn-instagram,
@@ -792,7 +783,6 @@ SOCIAL MEDIA BUTTONS
     box-shadow: none;
 }
 
-
 /*---------------------------------------------------------------------- /
 BOOTSTRAP COL-MD-12 CLASS
 ----------------------------------------------------------------------- */
@@ -801,7 +791,6 @@ BOOTSTRAP COL-MD-12 CLASS
     padding-right: 0px;
     padding-left: 0px;
 }
-
 
 /*---------------------------------------------------------------------- /
 FONT AWESOME FA CLASS

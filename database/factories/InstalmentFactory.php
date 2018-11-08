@@ -10,10 +10,8 @@ $factory->define(App\Instalment::class, function (Faker $faker) {
         'body' => $faker->paragraph,
         'user_id' => $faker->randomElement($user_ids),
         'article_id' => $faker->randomElement($article_ids),
-        'votes_count'=>$faker->numberBetween(1,200),
+        'votes_count'=>$faker->numberBetween(1,1000),
         'leg'=>$faker->numberBetween(1,10),
-       'votes_count_all'=>$faker->numberBetween(10,2000),
-        'prev_instalment'=>$faker->randomElement($instalment_ids),
         'created_at'=>$faker->dateTime,
         'updated_at'=>$faker->dateTime
     ];

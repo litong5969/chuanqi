@@ -54,6 +54,10 @@ a.tag:hover {
     padding: 2px 20px;
 }
 
+.statics-count {
+    color: #0a001f;
+}
+
 .messages-list {
     margin-top:80px;
 }
@@ -74,7 +78,7 @@ a.tag:hover {
     background: linear-gradient(100deg, #01aac1, #00649f);
 }
 .card-header {
-    background: linear-gradient(90deg, #deecfc, #b9ceeb);
+    background: linear-gradient(90deg, #a7d7c5, #74b49b);
 }
 
 .navbar{

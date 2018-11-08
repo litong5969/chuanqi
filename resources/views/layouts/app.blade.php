@@ -49,7 +49,8 @@
             </button>
             <!-- 搜索框-->
             <form class="form-inline my-2 my-lg-0" action="{{ url('/search') }}">
-                <input class="form-control mr-sm-2" name="titlesearch" type="search" placeholder="搜索" aria-label="Search">
+                <input class="form-control mr-sm-2" name="titlesearch" type="search" placeholder="搜索"
+                       aria-label="Search">
                 <button class="btn btn-light my-2 my-sm-0" type="submit">搜索</button>
             </form>
 
@@ -60,7 +61,7 @@
                 </ul>
 
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto" >
+                <ul class="navbar-nav ml-auto">
 
                     <!-- Authentication Links -->
                     @guest
@@ -74,32 +75,35 @@
 
                         <li class="nav-item dropdown" style="margin-top: 7px">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#ffffff" v-pre >
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#ffffff"
+                               v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <li>
-                                <a class="dropdown-item" href="/setting">
-                                    <i class="fa fa-id-card-o"></i>    {{ __('修改资料') }}
-                                </a></li>
+                                    <a class="dropdown-item" href="/setting">
+                                        <i class="fa fa-id-card-o"></i> {{ __('修改资料') }}
+                                    </a></li>
                                 <li><a class="dropdown-item" href="/notifications">
-                                        <i class="fa fa-bell"></i>    {{ __('消息通知') }}
-                                </a></li>
+                                        <i class="fa fa-bell"></i> {{ __('消息通知') }}
+                                    </a></li>
                                 <li><a class="dropdown-item" href="/inbox">
-                                        <i class="fa fa-envelope-open"></i>    {{ __('收件箱') }}
-                                </a></li>
+                                        <i class="fa fa-envelope-open"></i> {{ __('收件箱') }}
+                                    </a></li>
                                 <hr>
                                 <li><a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
+                                       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-sign-out"></i>    {{ __('退出') }}
-                                </a></li>
+                                        <i class="fa fa-sign-out"></i> {{ __('退出') }}
+                                    </a></li>
 
-                                <li><form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                      style="display: none;">
-                                    @csrf
-                                </form></li>
+                                <li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
                             </ul>
                         </li>
                         <li><img width="50" src=" {{ Auth::user()->avatar }}" alt="" class="rounded-circle">
@@ -116,8 +120,16 @@
         </div>
         @yield('content')
     </main>
+    <footer>
+        <hr>
+        <div class="footer-bottom">
+            <div class="row justify-content-center">
+                <a class="float-right" style="color: #2a2a2a"
+                   href="http://www.miitbeian.gov.cn/">京ICP备18055726号</a>
+            </div>
+        </div>
+    </footer>
 </div>
 @yield('js')
-
 </body>
 </html>

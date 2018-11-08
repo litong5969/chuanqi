@@ -1,6 +1,7 @@
 <template>
     <div>
         <button class="btn btn-link"
+                style="color:#0a001f;"
                 @click="showCommentsFrom"
                 v-text="text"
         >发送私信

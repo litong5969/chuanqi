@@ -61,7 +61,9 @@
 
                                     <comments type="instalment" model="{{$instalment->id}}"
                                               count="{{$instalment->comments()->count()}}"></comments>
-
+                                    <a href="#editor" class="btn btn-outline-primary float-right">
+                                        接下此棒
+                                    </a>
                                 </div>
                                 <div class="mr-3">
                                     <user-vote-button instalment="{{$instalment->id}}"

@@ -5,23 +5,31 @@
     <div class="container py-4">
         <div class="row">
             <div class="col-md-8 col-md-offset-1">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        {{$instalment->article->title}}
-                        @foreach($instalment->article->tags as $tag)
-                            <a class="tag float-right" href="/tag/{{$tag->id}}">{{$tag->name}}</a>
-                        @endforeach
-                    </div>
+                <div class="card mb-3 card-blog">
+                    {{--<div class="card-header" style="text-align: center;">--}}
+                    {{--{{$instalment->article->title}}--}}
+                    {{--@foreach($instalment->article->tags as $tag)--}}
+                    {{--<a class="tag float-right" href="/tag/{{$tag->id}}">{{$tag->name}}</a>--}}
+                    {{--@endforeach--}}
+                    {{--</div>--}}
 
                     <div class="card-body content">
+                        <div class="my-3" style="text-align: center;">{{$instalment->article->title}}</div>
+                        <hr>
                         {!!  $instalment->article->body!!}
                     </div>
 
                     <div class="actions">
-                        <comments type="article"
-                                  model="{{$instalment->article->id}}"
-                                  count="{{$instalment->article->comments()->count()}}">
-                        </comments>
+                        <div>
+                            <comments type="article" class="float-left"
+                                      model="{{$instalment->article->id}}"
+                                      count="{{$instalment->article->comments()->count()}}">
+                            </comments>
+                            <a class="btn btn-link float-left" style="color:#0a001f;"
+                               href="/articles/{{$instalment->article->id}}"><i
+                                        class="fa fa-magic" aria-hidden="true"></i>
+                                在此接棒</a>
+                        </div>
                         @if(Auth::check() && Auth::user()->owns($instalment->article))
                             <button class="btn btn-link float-right"><a
                                         href="/articles/{{$instalment->article->id}}/edit">编辑</a>
@@ -34,18 +42,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header">
-                        @if($instalment->article->instalments->count()>0)
-                            已传到第{{$instalment->article->instalments->count()}}棒
-                        @else
-                            还没有人接棒
-                        @endif
-                        <h6 class="float-right mt-1">当前世界线：{{$worldLine}}</h6>
-                    </div>
-
                     <div class="card-body card-blog">
-                        {{--<siema ref="siema" class="siema" :current.sync="curSlide" :playing.sync="playing" auto-play :ready="true" :options="options" @init="initFunc" @change="changeFunc">--}}
-                        {{--                        @while($instalment->prev_instalment==null)--}}
                         @foreach($instalments as $instal)
                             <div class="card-leg col-md-12 col-sm-offset-4 text-center">
                                 {{$instal->leg}}.
@@ -59,7 +56,8 @@
                                     <br>
                                     @guest
                                         <div class="mx-2 center-block">
-                                            <a class="btn btn-outline-secondary" style="width: 60px" href={{route('login')}} role="button">{{$instal->votes_count}}</a>
+                                            <a class="btn btn-outline-secondary" style="width: 60px"
+                                               href={{route('login')}} role="button">{{$instal->votes_count}}</a>
                                         </div>
                                     @else
                                         <div class="mx-2 center-block">
@@ -68,7 +66,6 @@
                                         </div>
                                     @endguest
                                 </div>
-
                                 <div class="media-body">
                                     <p class="px-2">{!! $instal->body !!}<br>
                                         <span class="mt-1 float-right blog-signature" align="right">
@@ -76,25 +73,21 @@
                                             {{$instal->created_at->format('Y-m-d')}}
                                     </span>
                                     </p>
-                                    <comments type="instalment" model="{{$instal->id}}"
-                                              count="{{$instal->comments()->count()}}"></comments>
-
+                                    <div class="card-function">
+                                        <comments class="float-left" type="instalment" model="{{$instal->id}}"
+                                                  count="{{$instal->comments()->count()}}"></comments>
+                                        <a class="btn btn-link float-left" href="/instalments/{{$instal->id}}"><i
+                                                    class="fa fa-magic" aria-hidden="true"></i>
+                                            在此接棒</a>
+                                    </div>
                                 </div>
                                 <div class="mx-2">
 
                                 </div>
                                 <hr>
                             </div>
-                            {{--                            {!!  $instalment=\App\Instalment::find($instalment->prev_instalment)!!}--}}
-                            {{--@endwhile--}}
-
                             <hr>
                         @endforeach
-                        {{--</siema>--}}
-
-
-                        {{--<div class="btn" @click="$refs.siema.prev()">Prev</div>--}}
-                        {{--<div class="btn" @click="$refs.siema.next()">Next</div>--}}
                         @if(Auth::check())
                             {!! Form::open(['url'=>"/instalments",'v-on:submit'=>'onSubmitForm']) !!}
                             {!! Form::hidden('article_id',$instalment->article->id) !!}
@@ -121,22 +114,42 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card mb-3">
-                    <div class="card-header question-follow">
-                        <span><h5>{{$instalment->article->followers_count}}关注者</h5></span>
-                    </div>
+                <div class="card mb-3 card-article-profile">
                     <div class="card-body">
+                        <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-sitemap" aria-hidden="true"></i>
+                                世界线分支数：{{$worldlineCounts}}</li>
+                            <li><i class="fa-li fa fa-server  fa-rotate-270" aria-hidden="true"></i>
+                                总接棒数：{{$worldlineCounts}}</li>
+                            <li><i class="fa-li fa fa-thumbs-up" aria-hidden="true"></i>
+                                获赞数：{{$instalment->article->votes_count}}</li>
+                            <li><i class="fa-li fa fa-users" aria-hidden="true"></i>
+                                关注者：{{$instalment->article->followers_count}}</li>
+                            <li><i class="fa-li fa fa-magic" aria-hidden="true"></i>
+                                @if($instalment->article->instalments->count()>0)
+                                    最远已传至第{{$instalment->article->instalments->count()}}棒
+                                @else
+                                    还没有人接棒
+                                @endif</li>
+                        </ul>
+                        <hr>
                         @guest
-                                <a class="btn btn-primary float-left" href={{route('login')}} role="button">关注该文</a>
-                            <a class="btn btn-outline-primary float-right" href={{route('login')}} role="button">登录接棒</a>
+                            <a class="btn btn-primary float-left" href={{route('login')}} role="button">关注该文</a>
                         @else
                             <article-follow-button article="{{$instalment->article->id}}"></article-follow-button>
-                            <a href="#editor" class="btn btn-outline-primary float-right">
-                                接下此棒
-                            </a>
                         @endguest
+                        <a href="/articles/{{$instalment->article_id}}" class="btn btn-outline-primary float-right">
+                            进入文章
+                        </a>
                     </div>
                 </div>
+                @if($instalment->is_the_last=='T')
+                    <div class="card mb-3 card-worldline">
+                        <div class="card-body">
+                            <h5 class="display-6" style="text-align: center; color:#ff7100;">当前世界线<br>{{$worldlineValue}}</h5>
+                        </div>
+                    </div>
+                @endif
                 <div class="card card-profile">
                     <div class="card-image">
                         <a href="#"><img class="img" height="250" src="/images/heros/cell1.jpg">
@@ -144,7 +157,7 @@
                         </a>
                         <div class="ripple-cont"></div>
                     </div>
-                    <div class="card-body" style="margin-top: 30px">
+                    <div class="card-body">
                         <div class="media">
                             <div class="mr-3">
                                 <a href="#">
@@ -159,32 +172,34 @@
                                     </a>
                                 </h4>
                                 @if($instalment->article->user->settings['weibo']!=null)
-                                    <i class="fa fa-weibo" aria-hidden="true"></i><a
-                                            href="{{$instalment->article->user->settings['weibo']}}">{{$instalment->article->user->settings['weibo']}}</a>
+                                    <a href="{{$instalment->article->user->settings['weibo']}}"><i
+                                                class="fa fa-weibo"
+                                                aria-hidden="true"></i> {{$instalment->article->user->settings['weibo']}}
+                                    </a>
                                 @endif
                             </div>
                         </div>
                         <div class="mt-2">
-
                             <p>{{$instalment->article->user->settings['bio']}}</p>
                         </div>
                         <div class="user-statics text-center">
                             <div class="statics-item text-center">
-                                <div class="statics-text">文章</div>
+                                <a href="#" class="statics-count">文章</a>
                                 <div class="statics-count">{{$instalment->article->user->articles_count}}</div>
                             </div>
                             <div class="statics-item text-center">
-                                <div class="statics-text">接棒</div>
+                                <a href="#" class="statics-count">接棒</a>
                                 <div class="statics-count">{{$instalment->article->user->instalments_count}}</div>
                             </div>
                             <div class="statics-item text-center">
-                                <div class="statics-text">粉丝</div>
+                                <a href="#" class="statics-count">粉丝</a>
                                 <div class="statics-count">{{$instalment->article->user->followers_count}}</div>
                             </div>
                         </div>
                         @guest
                             <a class="btn btn-primary float-left" href={{route('login')}} role="button">关注TA</a>
-                            <a class="btn btn-outline-primary float-right" href={{route('login')}} role="button">发送私信</a>
+                            <a class="btn btn-outline-primary float-right"
+                               href={{route('login')}} role="button">发送私信</a>
                         @else
                             <user-follow-button class="float-left"
                                                 user="{{$instalment->article->user_id}}"></user-follow-button>

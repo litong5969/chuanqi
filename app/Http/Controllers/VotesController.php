@@ -35,9 +35,11 @@ class VotesController extends Controller {
 
         if (count($voted['attached']) > 0) {
             $instalment->increment('votes_count');
+            $instalment->article()->increment('votes_count');
             return response()->json(['voted' => true]);
         }
         $instalment->decrement('votes_count');
+        $instalment->article()->decrement('votes_count');
         return response()->json(['voted' => false]);
     }
 }

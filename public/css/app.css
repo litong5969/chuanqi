@@ -451,7 +451,19 @@ h6,
 }
 
 .display-4 {
-  font-size: 3.5rem;
+   font-size: 3.5rem;
+   font-weight: 300;
+   line-height: 1.2;
+ }
+
+.display-5 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.display-6 {
+  font-size: 1.5rem;
   font-weight: 300;
   line-height: 1.2;
 }
@@ -11179,6 +11191,10 @@ a.tag:hover {
   padding: 2px 20px;
 }
 
+.statics-count {
+  color: #0a001f;
+}
+
 .messages-list {
   margin-top: 80px;
 }
@@ -11201,8 +11217,8 @@ a.tag:hover {
 }
 
 .card-header {
-  background: -webkit-gradient(linear, left top, right top, from(#deecfc), to(#b9ceeb));
-  background: linear-gradient(90deg, #deecfc, #b9ceeb);
+  background: -webkit-gradient(linear, left top, right top, from(#a7d7c5), to(#74b49b));
+  background: linear-gradient(90deg, #a7d7c5, #74b49b);
 }
 
 .navbar {

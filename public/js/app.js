@@ -2715,6 +2715,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['type', 'model', 'count'],
@@ -47446,6 +47447,7 @@ var render = function() {
       "button",
       {
         staticClass: "btn btn-link",
+        staticStyle: { color: "#0a001f" },
         domProps: { textContent: _vm._s(_vm.text) },
         on: { click: _vm.showCommentsFrom }
       },
