@@ -20,48 +20,48 @@ class InstalmentRepository {
         return Instalment::find($id);
     }
 
-    public function worldlineValueById($id)
-    {
-        $instalment = $this->byId($id);
-        $lasts = Instalment::where('article_id', $instalment->article_id)->where('is_the_last', 'T')->get();
-        $thisWorldLineVotes = $this->worldlineVotes($id);
-        $worldLineAll = [];
-        foreach ($lasts as $last) {
-            $lastId = $last->id;
-            $worldLineVotes = $this->worldlineVotes($lastId);
-            array_push($worldLineAll, ['votes_count' => $worldLineVotes, 'id' => $lastId]);
-        }
-        $worldLineAll = collect($worldLineAll)->sortBy('votes_count');
-        $maxWorldLine = $worldLineAll->last();
-        $maxVotesCounts = data_get($maxWorldLine, 'votes_count');
-        $maxVotesId = data_get($maxWorldLine, 'id');
-
-        if ($thisWorldLineVotes === $maxVotesCounts) {
-            return sprintf("%.6f", 1);
-        } else {
-            if ($instalment->created_at < $this->byId($maxVotesId)->created_at) {
-                return sprintf("%.6f", 1 - ($thisWorldLineVotes / $maxVotesCounts) * 3);
-            } else {
-                return sprintf("%.6f", 1 + ($thisWorldLineVotes / $maxVotesCounts) * 3);
-            }
-        }
-    }
-
-    public function worldlineVotes($id)
-    {
-        $instalment = $this->byId($id);
-        $worldLineVotes = $instalment->votes_count;
-        while ($this->getPrevId($instalment->id) !== null) {
-            $instalment = $this->byId($this->getPrevId($instalment->id));
-            $worldLineVotes = $worldLineVotes + $instalment->votes_count;
-        }
-        return $worldLineVotes;
-    }
-
-    public function worldlineCounts($id)
-    {
-       return $worldlineCounts = Instalment::where('article_id', $id)->where('is_the_last', 'T')->get()->count();
-    }
+//    public function worldlineValueById($id)
+//    {
+//        $instalment = $this->byId($id);
+//        $lasts = Instalment::where('article_id', $instalment->article_id)->where('is_the_last', 'T')->get();
+//        $thisWorldLineVotes = $this->worldlineVotes($id);
+//        $worldLineAll = [];
+//        foreach ($lasts as $last) {
+//            $lastId = $last->id;
+//            $worldLineVotes = $this->worldlineVotes($lastId);
+//            array_push($worldLineAll, ['votes_count' => $worldLineVotes, 'id' => $lastId]);
+//        }
+//        $worldLineAll = collect($worldLineAll)->sortBy('votes_count');
+//        $maxWorldLine = $worldLineAll->last();
+//        $maxVotesCounts = data_get($maxWorldLine, 'votes_count');
+//        $maxVotesId = data_get($maxWorldLine, 'id');
+//
+//        if ($thisWorldLineVotes === $maxVotesCounts) {
+//            return sprintf("%.6f", 1);
+//        } else {
+//            if ($instalment->created_at < $this->byId($maxVotesId)->created_at) {
+//                return sprintf("%.6f", 1 - ($thisWorldLineVotes / $maxVotesCounts) * 3);
+//            } else {
+//                return sprintf("%.6f", 1 + ($thisWorldLineVotes / $maxVotesCounts) * 3);
+//            }
+//        }
+//    }
+//
+//    public function worldlineVotes($id)
+//    {
+//        $instalment = $this->byId($id);
+//        $worldLineVotes = $instalment->votes_count;
+//        while ($this->getPrevId($instalment->id) !== null) {
+//            $instalment = $this->byId($this->getPrevId($instalment->id));
+//            $worldLineVotes = $worldLineVotes + $instalment->votes_count;
+//        }
+//        return $worldLineVotes;
+//    }
+//
+//    public function worldlineCounts($id)
+//    {
+//       return $worldlineCounts = Instalment::where('article_id', $id)->where('is_the_last', 'T')->get()->count();
+//    }
 
     public function getInstalmentsFeed()
     {
@@ -75,7 +75,7 @@ class InstalmentRepository {
 
     public function getAllLastInstalments()
     {
-        return $worldlineCounts = Instalment::where('is_the_last', 'T')->latest('created_at')->get();
+        return  Instalment::where('is_the_last', 'T')->latest('created_at')->get();
     }
 
     public function getInstalmentCommentsById($id)

@@ -6,13 +6,6 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-1">
                 <div class="card mb-3 card-blog">
-                    {{--<div class="card-header" style="text-align: center;">--}}
-                    {{--{{$instalment->article->title}}--}}
-                    {{--@foreach($instalment->article->tags as $tag)--}}
-                    {{--<a class="tag float-right" href="/tag/{{$tag->id}}">{{$tag->name}}</a>--}}
-                    {{--@endforeach--}}
-                    {{--</div>--}}
-
                     <div class="card-body content">
                         <div class="my-3" style="text-align: center;">{{$instalment->article->title}}</div>
                         <hr>
@@ -44,43 +37,43 @@
                 </div>
                 <div class="card">
                     <div class="card-body card-blog">
-                        @foreach($instalments as $instal)
-                            <div class="card-leg col-md-12 col-sm-offset-4 text-center">
-                                {{$instal->leg}}.
+                        @foreach($worldLine as $anInstalment)
+                            <div class="card-leg col-md-12 col-sm-offset-4  display-6 text-center">
+                                {{$anInstalment->leg}}.
                             </div><br>
                             <div class="media my-2">
                                 <div class="px-0">
                                     <a href="#" class="mx-2">
                                         <img class="card-avatar rounded"
-                                             src="{{$instal->user->avatar}}" alt="64x64">
+                                             src="{{$anInstalment->user->avatar}}" alt="64x64">
                                     </a>
                                     <br>
                                     @guest
                                         <div class="mx-2 center-block">
                                             <a class="btn btn-outline-secondary" style="width: 60px"
-                                               href={{route('login')}} role="button">{{$instal->votes_count}}</a>
+                                               href={{route('login')}} role="button">{{$anInstalment->votes_count}}</a>
                                         </div>
                                     @else
                                         <div class="mx-2 center-block">
-                                            <user-vote-button instalment="{{$instal->id}}"
-                                                              count="{{$instal->votes_count}}"></user-vote-button>
+                                            <user-vote-button instalment="{{$anInstalment->id}}"
+                                                              count="{{$anInstalment->votes_count}}"></user-vote-button>
                                         </div>
                                     @endguest
                                 </div>
                                 <div class="media-body">
-                                    <p class="px-2">{!! $instal->body !!}<br>
+                                    <p class="px-2">{!! $anInstalment->body !!}<br>
                                         <span class="mt-1 float-right blog-signature" align="right">
-                                        {{$instal->user->name}}<br>
-                                            {{$instal->created_at->format('Y-m-d')}}
+                                        {{$anInstalment->user->name}}<br>
+                                            {{$anInstalment->created_at->format('Y-m-d')}}
                                     </span>
                                     </p>
                                     <div class="card-function ml-1">
                                         <div><i class="fa fa-comments-o float-left icon" aria-hidden="true"></i>
                                             <comments class="float-left button" type="instalment"
-                                                      model="{{$instal->id}}"
-                                                      count="{{$instal->comments()->count()}}"></comments>
+                                                      model="{{$anInstalment->id}}"
+                                                      count="{{$anInstalment->comments()->count()}}"></comments>
                                         </div>
-                                        <a class="btn btn-link float-left button" href="/instalments/{{$instal->id}}"><i
+                                        <a class="btn btn-link float-left button" href="/instalments/{{$anInstalment->id}}"><i
                                                     class="fa fa-magic" aria-hidden="true"></i>
                                             在此接棒</a>
                                     </div>
@@ -89,6 +82,14 @@
                             </div>
                             <hr>
                         @endforeach
+                    </div>
+                </div>
+
+
+                <div class="card-body card-blog">
+                    <div class="card-leg col-md-12 col-sm-offset-4 display-6 text-center">
+                        继续.
+                    </div><hr>
                         @if(Auth::check())
                             {!! Form::open(['url'=>"/instalments",'v-on:submit'=>'onSubmitForm']) !!}
                             {!! Form::hidden('article_id',$instalment->article->id) !!}
@@ -112,14 +113,14 @@
                             <a href="/login" class="btn btn-primary btn-block">登录接棒</a>
                         @endif
                     </div>
-                </div>
+
             </div>
             <div class="col-md-3">
                 <div class="card mb-3 card-article-profile">
                     <div class="card-body">
                         <ul class="fa-ul">
                             <li><i class="fa-li fa fa-sitemap" aria-hidden="true"></i>
-                                世界线分支数：{{$worldlineCounts}}</li>
+                                世界线分支数：{{$worldLineCounts}}</li>
                             <li><i class="fa-li fa fa-server  fa-rotate-270" aria-hidden="true"></i>
                                 总接棒数：{{$instalment->article->instalments->count()}}</li>
                             <li><i class="fa-li fa fa-thumbs-up" aria-hidden="true"></i>
@@ -145,12 +146,12 @@
                     </div>
                 </div>
                 @if($instalment->is_the_last=='T')
-                    <div class="card mb-3 card-worldline">
+                    <div class="card mb-3 card-worldLine">
                         <div class="card-body">
                             <h5 class="display-6" style="text-align: center; color:#ffffff;">
                                 当前世界线</h5>
                             <h5 class="display-6" style="text-align: center; color:#ff7100;">
-                                {{$worldlineValue}}</h5>
+                                {{$worldLineValue}}</h5>
                         </div>
                     </div>
                 @endif

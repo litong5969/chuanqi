@@ -6,6 +6,7 @@ namespace App\Repositories;
 use App\Instalment;
 use App\Tag;
 use App\Article;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ArticleRepository
@@ -66,5 +67,21 @@ class ArticleRepository {
     public function biggestLeg($id)
     {
         return Instalment::where('article_id', $id)->max('leg');
+    }
+
+    public function getAllLastInstalments($id)
+    {
+        return  Instalment::where('article_id', $id)->where('is_the_last', 'T')->get();
+    }
+
+    public function getPrevInstalmentId($id)
+    {
+        $instalment = DB::table('instalment_instalment')->where('next_id', $id)->first();
+        return $instalment->prev_id;
+    }
+
+    public function instalmentById($id)
+    {
+        return Instalment::find($id);
     }
 }

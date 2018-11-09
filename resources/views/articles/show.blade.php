@@ -15,8 +15,6 @@
                         <hr>
                         {!!  $article->body!!}
                     </div>
-
-
                     <div class="actions">
                         <div class="card-function ml-1">
                             <i class="fa fa-comments-o float-left icon" aria-hidden="true"></i>
@@ -40,83 +38,77 @@
                         </div>
                     </div>
                 </div>
+
+
                 <div class="card">
                     <div class="card-body card-blog">
-                        <siema ref="siema" class="siema" :current.sync="curSlide" :playing.sync="playing" auto-play
-                               :ready="true" :options="options" @init="initFunc" @change="changeFunc">
-
-                            @foreach($article->instalments as $instalment)
-                                <div class="media slide">
-                                    <a href="#" class="mr-3">
-                                        <img class="card-avatar rounded"
-                                             src="{{$instalment->user->avatar}}" alt="64x64">
-                                    </a>
-                                    <br>
-                                    @guest
-                                        <div class="mx-2 center-block">
-                                            <a class="btn btn-outline-secondary" style="width: 60px"
-                                               href={{route('login')}} role="button">{{$instalment->votes_count}}</a>
-                                        </div>
-                                    @else
-                                        <div class="mx-2 center-block">
-                                            <user-vote-button instalment="{{$instalment->id}}"
-                                                              count="{{$instalment->votes_count}}"></user-vote-button>
-                                        </div>
-                                    @endguest
-                                    <div class="media-body">
-                                        <h4 class="mt-0">
-                                            <a href="/user/{{$instalment->user->name}}">
-                                                {{$instalment->user->name}}
-                                            </a>
-                                        </h4>
-                                        <a href="/instalments/{{$instalment->id}}">{!! $instalment->body !!}<span class="float-right date">
-                                            {{$instalment->created_at->format('Y-m-d')}}</span></a>
-                                        <div class="card-function ml-1">
-                                            <div><i class="fa fa-comments-o float-left icon button" aria-hidden="true"></i>
-                                                <comments class="float-left" type="instalment" model="{{$instalment->id}}"
-                                                          count="{{$instalment->comments()->count()}}"></comments>
-                                            </div>
-                                            <a class="btn btn-link float-left button" href="/instalments/{{$instalment->id}}"><i
-                                                        class="fa fa-magic" aria-hidden="true"></i>
-                                                在此接棒</a>
-                                        </div>
+                        @if($worldLines!=null)
+                        {{--<siema ref="siema" class="siema" :current.sync="curSlide" :playing.sync="playing" auto-play--}}
+                        {{--:ready="true" :options="options" @init="initFunc" @change="changeFunc">--}}
+                        <div class="card-leg col-md-12 col-sm-offset-4 display-6 text-center">
+                            共有{{count($worldLines)}}条分支
+                        </div>
+                        @foreach($worldLines as $worldLine)
+                            <hr>
+                            @php($lastid=array_last($worldLine)->id)
+                            <a class="btn btn-black float-left mr-4" href="/instalments/{{$lastid}}">进入世界线</a>
+                            <div class="media slide">
+                                @foreach($worldLine as $anInstalment)
+                                    <div class="float-left">
+                                        <a href="/instalments/{{$anInstalment->id}}" class="mr-3">
+                                            <img class="card-avatar rounded"
+                                                 src="{{$anInstalment->user->avatar}}" alt="64x64">
+                                        </a>
+                                        <a href="/instalments/{{$anInstalment->id}}" class="">
+                                            <h5 class="display-6">{{$anInstalment->leg}}</h5>
+                                        </a>
                                     </div>
-                                    <hr>
-                                </div>
-
-                            @endforeach
-                        </siema>
-                        <div class="btn" @click="$refs.siema.prev()">Prev</div>
-                        <div class="btn" @click="$refs.siema.next()">Next</div>
-                    @if(Auth::check())
-                        {!! Form::open(['url'=>"/instalments",'v-on:submit'=>'onSubmitForm']) !!}
-                        {!! Form::hidden('article_id',$article->id) !!}
-                        <!--- Body Field --->
-                            <div class="form-group">
-                                <!-- UE编辑器容器 -->
-                                <script id="container" name="body" type="text/plain">{!!old('body')!!}</script>
-                                @if($errors->has('body'))
-                                    <ul class="list-group">
-                                        @foreach($errors->get('body') as $error)
-                                            <li class="list-group-item list-group-item-danger">{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                @endif
+                                @endforeach
                             </div>
-                            {!! Form::submit('提交',['class'=>'btn btn-primary form-control']) !!}
-                            {!! Form::close() !!}
+
+                        @endforeach
                         @else
-                            <a href="/login" class="btn btn-primary btn-block">登录接棒</a>
+                            <div class="card-leg col-md-12 col-sm-offset-4 display-6 text-center">
+                                还未发展出任何世界线
+                            </div>
                         @endif
                     </div>
                 </div>
+
+
+                <div class="card-body card-blog">
+                    <div class="card-leg col-md-12 col-sm-offset-4 display-6 text-center">
+                        从头来过.
+                    </div><hr>
+                @if(Auth::check())
+                    {!! Form::open(['url'=>"/instalments",'v-on:submit'=>'onSubmitForm']) !!}
+                    {!! Form::hidden('article_id',$article->id) !!}
+                    <!--- Body Field --->
+                        <div class="form-group">
+                            <!-- UE编辑器容器 -->
+                            <script id="container" name="body" type="text/plain">{!!old('body')!!}</script>
+                            @if($errors->has('body'))
+                                <ul class="list-group">
+                                    @foreach($errors->get('body') as $error)
+                                        <li class="list-group-item list-group-item-danger">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </div>
+                        {!! Form::submit('提交',['class'=>'btn btn-primary form-control']) !!}
+                        {!! Form::close() !!}
+                    @else
+                        <a href="/login" class="btn btn-primary btn-block">登录接棒</a>
+                    @endif
+                </div>
+
             </div>
             <div class="col-md-3">
                 <div class="card mb-3 card-article-profile">
                     <div class="card-body">
                         <ul class="fa-ul">
                             <li><i class="fa-li fa fa-sitemap" aria-hidden="true"></i>
-                                世界线分支数：{{$worldlineCounts}}</li>
+                                世界线分支数：{{$worldLineCounts}}</li>
                             <li><i class="fa-li fa fa-server  fa-rotate-270" aria-hidden="true"></i>
                                 总接棒数：{{$article->instalments->count()}}</li>
                             <li><i class="fa-li fa fa-thumbs-up" aria-hidden="true"></i>
@@ -137,7 +129,7 @@
                             <article-follow-button article="{{$article->id}}"></article-follow-button>
                         @endguest
                         {{--<a href="/articles/{{$instalment->article_id}}" class="btn btn-outline-primary float-right">--}}
-                            {{--进入文章--}}
+                        {{--进入文章--}}
                         {{--</a>--}}
                     </div>
                 </div>

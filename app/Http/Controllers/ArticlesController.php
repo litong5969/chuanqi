@@ -5,22 +5,24 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Http\Requests\CreateArticleRequest;
 use App\Repositories\ArticleRepository;
+use App\Repositories\WorldLineRepository;
 use function compact;
+use function dd;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use function redirect;
 use function view;
 
 
-
 class ArticlesController extends Controller {
 
     protected $articleRepository;
 
-    public function __construct(ArticleRepository $articleRepository)
+    public function __construct(ArticleRepository $articleRepository,WorldLineRepository $worldLine)
     {
         $this->middleware('auth')->except(['index', 'show']);
-        $this->articleRepository=$articleRepository;
+        $this->articleRepository = $articleRepository;
+        $this->worldLine=$worldLine;
     }
 
     /**
@@ -31,7 +33,7 @@ class ArticlesController extends Controller {
     public function index()
     {
         $articles = $this->articleRepository->getArticlesFeed();
-        return view('articles.index',compact('articles'));
+        return view('articles.index', compact('articles'));
     }
 
     /**
@@ -59,12 +61,12 @@ class ArticlesController extends Controller {
             'body' => $request->get('body'),
             'user_id' => Auth::id()];
         $article = $this->articleRepository->create($data);
-        if($request->get('tags')!=null){
+        if ($request->get('tags') != null) {
             $tags = $this->articleRepository->normalizeTag($request->get('tags'));
             //多对多操作，写入第三张表
             $article->tags()->attach($tags);
         }
-            user()->followThis($article->id);
+        user()->followThis($article->id);
         return redirect()->route('articles.show', [$article->id]);
     }
 
@@ -77,9 +79,10 @@ class ArticlesController extends Controller {
     public function show($id)
     {
         $article = $this->articleRepository->byIdWithTagsAndInstalments($id);//把搜索到的tag内容附加到结果里
-        $worldlineCounts=$this->articleRepository->worldlineCounts($id);
-        $biggestLeg=$this->articleRepository->biggestLeg($id);
-        return view('articles.show', compact('article','worldlineCounts','biggestLeg'));
+        $worldLineCounts = $this->articleRepository->worldLineCounts($id);
+        $biggestLeg = $this->articleRepository->biggestLeg($id);
+        $worldLines=$this->worldLine->worldLinesByArticleId($id);
+        return view('articles.show', compact('article', 'worldLineCounts', 'biggestLeg','worldLines'));
     }
 
     /**
@@ -91,9 +94,8 @@ class ArticlesController extends Controller {
     public function edit($id)
     {
         $article = $this->articleRepository->byId($id);
-        if(Auth::user()->owns($article)){
+        if (Auth::user()->owns($article)) {
             return view('articles.edit', compact('article'));
-
         }
         return back();
     }
@@ -111,8 +113,8 @@ class ArticlesController extends Controller {
         $article = $this->articleRepository->byId($id);
         $tags = $this->articleRepository->normalizeTag($request->get('tags'));
         $article->update([
-            'title'=>$request->get('title'),
-            'body'=>$request->get('body')
+            'title' => $request->get('title'),
+            'body' => $request->get('body'),
         ]);
         $article->tags()->sync($tags);
         return redirect()->route('articles.show', [$article->id]);
@@ -127,14 +129,12 @@ class ArticlesController extends Controller {
     public function destroy($id)
     {
         $article = $this->articleRepository->byId($id);
-        if (Auth::user()->owns($article)){
+        if (Auth::user()->owns($article)) {
             $article->delete();
             return redirect('/articles/');
         }
 
         abort(403, 'Forbidden');
     }
-
-
 
 }
