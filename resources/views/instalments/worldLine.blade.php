@@ -30,7 +30,7 @@
                         <a class="nav-link active" href="#worldline" role="tab" data-toggle="tab">最新世界线</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/articles') }}" >文章列表</a>
+                        <a class="nav-link" href="{{ url('/articles') }}">文章列表</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#messages" role="tab" data-toggle="tab">待定</a>
@@ -43,37 +43,38 @@
                     <div role="tabpanel" class="tab-pane in active" id="worldline">
                         @foreach($instalments as $instalment)
                             <div class="media my-4">
-                                <div class="mr-3">
-                                    <a href="">
-                                        <img width="64" src="{{$instalment->user->avatar}}"
-                                             alt="{{$instalment->user->name}}"
-                                             class="card-avatar rounded">
-                                    </a>
-                                </div>
 
-                                <div class="media-conversation-meta">
+                                <div class="media-conversation-meta ml-3">
                                     <span class="media-conversation-replies">
                                         共
                                         <a href="/instalments/{{$instalment->id}}">{{$instalment->leg}}</a>
                                         棒
                                     </span>
                                 </div>
+
                                 <div class="media-body mx-3">
-                                    <h7 class="mt-0" style="color:#bcbab8">
-                                        文章：《{{$instalment->article->title}}》，by {{$instalment->article->user->name}}
-                                    </h7>
-                                    <h4 class="mt-0">
-                                        <a href="/instalments/{{$instalment->id}}">
-                                            {!!   str_limit(strip_tags($instalment->body), 120, '... ... ') !!}
+                                    <div class="mt-0 col-md-12">
+                                        <a class="display-7" href="/instalments/{{$instalment->id}}">
+                                            <p>文章：《{{$instalment->article->title}}》<br>
+                                                by {{$instalment->article->user->name}}</p>
+                                        <h6 class="display-7 mt-2" style="color: #3D3D3D">
+                                            ... ...{!!   str_limit(strip_tags($instalment->body), 120, '... ... ') !!}
+                                        </h6>
                                         </a>
-                                    </h4>
-                                    <p>{{$instalment->user->name}}
-                                        <t class="date float-right mr-3">{{$instalment->created_at->format('Y-m-d')}}</t>
-                                    </p>
-                                    {{--@if($instalment->is_the_last=='T')--}}
-                                    {{--<p class="btn btn-black">终点</p>--}}
-                                    {{--@endif--}}
+                                    </div>
                                 </div>
+
+                                <div class="blog-signature float-right">
+                                    <a href="#" class="mx-2 float-right">
+                                        <img class="card-avatar rounded-circle"
+                                             src="{{$instalment->user->avatar}}" alt="64x64">
+                                    </a>
+                                    <div class="float-right" align="right">
+                                        {{$instalment->user->name}}<br>
+                                        {{$instalment->created_at->format('Y-m-d')}}
+                                    </div>
+                                </div>
+
                             </div>
                             <hr>
                         @endforeach

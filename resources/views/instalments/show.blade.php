@@ -4,7 +4,7 @@
     @include('vendor.ueditor.assets')
     <div class="container py-4">
         <div class="row">
-            <div class="col-md-8 col-md-offset-1">
+            <div class="col-md-8 col-md-offset-1 my-3">
                 <div class="card mb-3 card-blog">
                     <div class="card-body content">
                         <div class="my-3" style="text-align: center;">{{$instalment->article->title}}</div>
@@ -39,14 +39,14 @@
                     <div class="card-body card-blog">
                         @foreach($worldLine as $anInstalment)
                             <div class="card-leg col-md-12 col-sm-offset-4  display-6 text-center">
-                                {{$anInstalment->leg}}.
+                                @if($anInstalment->is_the_last!='T')
+                                    {{$anInstalment->leg}}.
+                                @else
+                                    Now.
+                                @endif
                             </div><br>
                             <div class="media my-2">
                                 <div class="px-0">
-                                    <a href="#" class="mx-2">
-                                        <img class="card-avatar rounded"
-                                             src="{{$anInstalment->user->avatar}}" alt="64x64">
-                                    </a>
                                     <br>
                                     @guest
                                         <div class="mx-2 center-block">
@@ -61,19 +61,27 @@
                                     @endguest
                                 </div>
                                 <div class="media-body">
-                                    <p class="px-2">{!! $anInstalment->body !!}<br>
-                                        <span class="mt-1 float-right blog-signature" align="right">
+                                    <p class="px-2">{!! $anInstalment->body !!}<br></p>
+                                    <div class="mt-1 blog-signature" align="right">
+                                        <a href="#" class="mx-2 float-right">
+                                            <img class="card-avatar rounded-circle"
+                                                 src="{{$anInstalment->user->avatar}}" alt="64x64">
+                                        </a>
+                                        <div class="float-right">
                                         {{$anInstalment->user->name}}<br>
-                                            {{$anInstalment->created_at->format('Y-m-d')}}
-                                    </span>
-                                    </p>
+                                                 {{$anInstalment->created_at->format('Y-m-d')}}
+                                                                                </div>
+
+                                    </div>
                                     <div class="card-function ml-1">
+
                                         <div><i class="fa fa-comments-o float-left icon" aria-hidden="true"></i>
                                             <comments class="float-left button" type="instalment"
                                                       model="{{$anInstalment->id}}"
                                                       count="{{$anInstalment->comments()->count()}}"></comments>
                                         </div>
-                                        <a class="btn btn-link float-left button" href="/instalments/{{$anInstalment->id}}"><i
+                                        <a class="btn btn-link float-left button"
+                                           href="/instalments/{{$anInstalment->id}}"><i
                                                     class="fa fa-magic" aria-hidden="true"></i>
                                             在此接棒</a>
                                     </div>
@@ -89,33 +97,34 @@
                 <div class="card-body card-blog">
                     <div class="card-leg col-md-12 col-sm-offset-4 display-6 text-center">
                         继续.
-                    </div><hr>
-                        @if(Auth::check())
-                            {!! Form::open(['url'=>"/instalments",'v-on:submit'=>'onSubmitForm']) !!}
-                            {!! Form::hidden('article_id',$instalment->article->id) !!}
-                            {!! Form::hidden('prev_id',$instalment->id) !!}
-                            {!! Form::hidden('leg',$instalment->leg) !!}
-                        <!--- Body Field --->
-                            <div class="form-group">
-                                <!-- UE编辑器容器 -->
-                                <script id="container" name="body" type="text/plain">{!!old('body')!!}</script>
-                                @if($errors->has('body'))
-                                    <ul class="list-group">
-                                        @foreach($errors->get('body') as $error)
-                                            <li class="list-group-item list-group-item-danger">{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                @endif
-                            </div>
-                            {!! Form::submit('提交',['class'=>'btn btn-primary form-control']) !!}
-                            {!! Form::close() !!}
-                        @else
-                            <a href="/login" class="btn btn-primary btn-block">登录接棒</a>
-                        @endif
                     </div>
+                    <hr>
+                @if(Auth::check())
+                    {!! Form::open(['url'=>"/instalments",'v-on:submit'=>'onSubmitForm']) !!}
+                    {!! Form::hidden('article_id',$instalment->article->id) !!}
+                    {!! Form::hidden('prev_id',$instalment->id) !!}
+                    {!! Form::hidden('leg',$instalment->leg) !!}
+                    <!--- Body Field --->
+                        <div class="form-group">
+                            <!-- UE编辑器容器 -->
+                            <script id="container" name="body" type="text/plain">{!!old('body')!!}</script>
+                            @if($errors->has('body'))
+                                <ul class="list-group">
+                                    @foreach($errors->get('body') as $error)
+                                        <li class="list-group-item list-group-item-danger">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </div>
+                        {!! Form::submit('提交',['class'=>'btn btn-primary form-control']) !!}
+                        {!! Form::close() !!}
+                    @else
+                        <a href="/login" class="btn btn-primary btn-block">登录接棒</a>
+                    @endif
+                </div>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3  my-3">
                 <div class="card mb-3 card-article-profile">
                     <div class="card-body">
                         <ul class="fa-ul">

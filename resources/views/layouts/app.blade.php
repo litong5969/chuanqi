@@ -24,16 +24,35 @@
     </script>
 {{--    <meta name="api_token" content="{{Auth::check()?'Bearer '.Auth::user()->api_token:'Bearer '}}">--}}
 <!-- Scripts -->
+
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/cards-style.css">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="{{asset('js/jquery.min.js')}}"></script>
-    <script src="{{asset('js/siema.min.js')}}"></script>
+    {{--<script src="{{asset('js/siema.min.js')}}"></script>--}}
+    <script src="{{asset('js/hullabaloo.js')}}"></script>
+    <script type="text/javascript" src="js/hullabaloo.js"></script>
+    <script type="text/javascript">
+        $.hulla = new hullabaloo();
+
+        setTimeout(function() {
+            $.hulla.send("Hi！这里是HTML5资源教程网！", "success");
+        }, 1000);
+
+        setTimeout(function() {
+            $.hulla.send("欢迎您的访问！", "info");
+        }, 2000);
+
+        setTimeout(function() {
+            $.hulla.send("想知道如何使用HTML5实现炫酷的应用吗？", "warning");
+        }, 3000);
+    </script>
     <!-- Fonts -->
 {{--<link rel="dns-prefetch" href="https://fonts.gstatic.com">--}}
 {{--<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">--}}
 <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
 <div id="app">

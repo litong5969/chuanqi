@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jQuery实现的Mac样式消息提示框DEMO演示</title>
+
+<link href="css/app.css" rel="stylesheet">
+<link href="css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/hullabaloo.js"></script>
+<script type="text/javascript">
+	$.hulla = new hullabaloo();
+
+	setTimeout(function() {
+	  $.hulla.send("Hi！这里是HTML5资源教程网！", "success");
+	}, 1000);
+
+	setTimeout(function() {
+	  $.hulla.send("欢迎您的访问！", "info");
+	}, 2000);
+
+	setTimeout(function() {
+	  $.hulla.send("想知道如何使用HTML5实现炫酷的应用吗？", "warning");
+	}, 3000);
+</script>
+</body>
+</html>

@@ -22,7 +22,6 @@
                                 <div class="media-body">
                                     <h5 class="mt-0">{{comment.user.name}}</h5>
                                     <p>{{comment.body}}<span class="float-right date">{{comment.created_at.substring(0,10)}}</span></p>
-
                                 </div>
                                 <hr>
                             </div>

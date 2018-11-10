@@ -6,7 +6,9 @@ namespace App\Repositories;
 
 use App\Instalment;
 use function array_collapse;
+use function array_prepend;
 use Carbon\Carbon;
+use function collect;
 use function dd;
 use Illuminate\Support\Facades\DB;
 

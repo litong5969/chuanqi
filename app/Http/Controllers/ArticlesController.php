@@ -10,6 +10,7 @@ use function compact;
 use function dd;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use function is_numeric;
 use function redirect;
 use function view;
 
@@ -78,11 +79,14 @@ class ArticlesController extends Controller {
      */
     public function show($id)
     {
+        $this->articleRepository->getAllLastIds($id);
         $article = $this->articleRepository->byIdWithTagsAndInstalments($id);//把搜索到的tag内容附加到结果里
         $worldLineCounts = $this->articleRepository->worldLineCounts($id);
         $biggestLeg = $this->articleRepository->biggestLeg($id);
         $worldLines=$this->worldLine->worldLinesByArticleId($id);
-        return view('articles.show', compact('article', 'worldLineCounts', 'biggestLeg','worldLines'));
+        $allLastIds = $this->articleRepository->getAllLastIds($id);
+//        dd($worldLines);
+        return view('articles.show', compact('article', 'worldLineCounts', 'biggestLeg','worldLines','allLastIds'));
     }
 
     /**

@@ -42,7 +42,7 @@ a.tag:hover {
 }
 
 .user-statics, .user-actions {
-    margin-top:20px;
+    margin-top: 20px;
 }
 
 .user-statics {
@@ -59,50 +59,53 @@ a.tag:hover {
 }
 
 .messages-list {
-    margin-top:80px;
+    margin-top: 80px;
 }
 
-.notifications{
-    position:relative;
-    padding:8px 15px 8px 25px;
-    color:#666;
-    border:none;
-    border-top:1px dotted #eee;
+.notifications {
+    position: relative;
+    padding: 8px 15px 8px 25px;
+    color: #666;
+    border: none;
+    border-top: 1px dotted #eee;
     background: transparent;
 }
+
 .notifications.unread {
     background: #fff9ea;
 }
 
-.navbar-laravel{
+.navbar-laravel {
     background: linear-gradient(100deg, #01aac1, #00649f);
 }
+
 .card-header {
     background: linear-gradient(90deg, #a7d7c5, #74b49b);
 }
 
-.navbar{
+.navbar {
     margin-bottom: 0;
 }
 
 .media-conversation-meta {
-    float:left;
+    float: left;
 }
 
 .media-conversation-replies {
     font-size: 1em;
     color: #A7B3C2;
     padding-top: 10px;
-    disploy:block;
+    disploy: block;
 }
 
-.jumbotron{
+.jumbotron {
     background: linear-gradient(60deg, #ec407a, #c2185b);
-    margin-bottom:20px;
-    color:#fff;
-    margin-top:-4px;
+    margin-bottom: 20px;
+    color: #fff;
+    margin-top: -4px;
 }
-.media-conversation-replies a{
+
+.media-conversation-replies a {
     font-weight: 700;
     display: block;
     text-align: center;
@@ -111,27 +114,45 @@ a.tag:hover {
     line-height: 1;
     margin-bottom: -1px;
 }
-.media-body a{
+
+.media-body a {
     color: #4b4b4b;
 }
-.date{
+
+.date {
     font-size: .7em;
     color: #A7B3C2;
     margin-top: 2px;
-    disploy:block;
+    disploy: block;
 }
-.inboxcount{
+
+.inboxcount {
     font-size: .9em;
     color: #393e46;
-    disploy:block;
+    disploy: block;
 }
 
 .btn-black {
     /*text-align: center; */
-    color:#ff7100;
+    color: #ff7100;
     background: linear-gradient(60deg, #203541, #092a35);
-
 }
+
+.btn-black:hover {
+    color: #ffffff;
+    background-color: #ff7100;
+    border-color: #ff7100;
+}
+
+.btn-vote {
+    /*text-align: center; */
+    color: #ff7100;
+    /*background: linear-gradient(60deg, #203541, #092a35);*/
+    background: url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png);
+    width: 540px;
+    height: 258px;
+}
+
 .btn-black:hover {
     color: #ffffff;
     background-color: #ff7100;
@@ -146,6 +167,18 @@ a.tag:hover {
 
 .display-6 {
     font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.display-7 {
+     font-size: 1rem;
+     font-weight: 300;
+     line-height: 1.2;
+ }
+
+.display-8 {
+    font-size: 0.5rem;
     font-weight: 300;
     line-height: 1.2;
 }

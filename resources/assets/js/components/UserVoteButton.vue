@@ -1,11 +1,11 @@
 <template>
-    <a class="btn"
-            v-bind:class="{'btn-info':voted,'btn-outline-secondary':!voted}"
+    <button
+            v-bind:class="{'btn-info':voted,'btn-vote':!voted}"
             v-text="text"
             v-on:click="vote"
     style="width: 60px">
         <i class="fa fa-magic" aria-hidden="true"></i>
-    </a>
+    </button>
 </template>
 
 <script>

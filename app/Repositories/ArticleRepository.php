@@ -71,7 +71,17 @@ class ArticleRepository {
 
     public function getAllLastInstalments($id)
     {
-        return  Instalment::where('article_id', $id)->where('is_the_last', 'T')->get();
+        return Instalment::where('article_id', $id)->where('is_the_last', 'T')->get();
+    }
+
+    public function getAllLastIds($id)
+    {
+        $lasts = Instalment::where('article_id', $id)->where('is_the_last', 'T')->get();
+        $last_ids = [];
+        foreach ($lasts as $last) {
+            $last_ids = array_prepend($last_ids, $last->id);
+        }
+        return $last_ids;
     }
 
     public function getPrevInstalmentId($id)

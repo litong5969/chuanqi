@@ -25,13 +25,6 @@
             <div class="card col-md-9 card-blog">
                 @foreach($instalments as $instalment)
                     <div class="media my-4">
-                        <div class="mr-3">
-                            <a href="">
-                                <img width="64" src="{{$instalment->user->avatar}}" alt="{{$instalment->user->name}}"
-                                     class="card-avatar rounded">
-                            </a>
-                        </div>
-
                             <div class="media-conversation-meta">
                                     <span class="media-conversation-replies">
                                         第
@@ -48,6 +41,10 @@
                                     {!!   str_limit(strip_tags($instalment->body), 120, '... ... ') !!}
                                 </a>
                             </h4>
+                            <a href="">
+                                <img width="64" src="{{$instalment->user->avatar}}" alt="{{$instalment->user->name}}"
+                                     class="card-avatar rounded-circle">
+                            </a>
                             <p>{{$instalment->user->name}}
                                 <t class="date float-right mr-3">{{$instalment->created_at->format('Y-m-d')}}</t>
                             </p>

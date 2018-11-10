@@ -4,7 +4,7 @@
     @include('vendor.ueditor.assets')
     <div class="container py-4">
         <div class="row">
-            <div class="col-md-8 col-md-offset-1">
+            <div class="col-md-8 col-md-offset-1 my-3">
                 <div class="card mb-3 card-blog">
                     <div class="card-body content">
                         <div class="my-3"
@@ -30,7 +30,7 @@
                                 <i class="fa fa-pencil float-left icon ml-3" aria-hidden="true"></i>
                                 <a class="btn btn-link float-left button"
                                    href="/articles/{{$article->id}}/edit">编辑</a>
-                                <i class="fa fa-times float-left icon  ml-3" aria-hidden="true"></i>
+                                <i class="fa fa-trash float-left icon  ml-3" aria-hidden="true"></i>
                                 {!! Form::open(['url'=>"/articles/$article->id",'method'=>'DELETE','class'=>'delete-form float-left']) !!}
                                 {!! Form::submit('删除',['class'=>'btn btn-link float-left button']) !!}
                                 {!! Form::close() !!}
@@ -43,30 +43,32 @@
                 <div class="card">
                     <div class="card-body card-blog">
                         @if($worldLines!=null)
-                        {{--<siema ref="siema" class="siema" :current.sync="curSlide" :playing.sync="playing" auto-play--}}
-                        {{--:ready="true" :options="options" @init="initFunc" @change="changeFunc">--}}
-                        <div class="card-leg col-md-12 col-sm-offset-4 display-6 text-center">
-                            共有{{count($worldLines)}}条分支
-                        </div>
-                        @foreach($worldLines as $worldLine)
-                            <hr>
-                            @php($lastid=array_last($worldLine)->id)
-                            <a class="btn btn-black float-left mr-4" href="/instalments/{{$lastid}}">进入世界线</a>
-                            <div class="media slide">
-                                @foreach($worldLine as $anInstalment)
-                                    <div class="float-left">
-                                        <a href="/instalments/{{$anInstalment->id}}" class="mr-3">
-                                            <img class="card-avatar rounded"
-                                                 src="{{$anInstalment->user->avatar}}" alt="64x64">
-                                        </a>
-                                        <a href="/instalments/{{$anInstalment->id}}" class="">
-                                            <h5 class="display-6">{{$anInstalment->leg}}</h5>
-                                        </a>
-                                    </div>
-                                @endforeach
+                            {{--<siema ref="siema" class="siema" :current.sync="curSlide" :playing.sync="playing" auto-play--}}
+                            {{--:ready="true" :options="options" @init="initFunc" @change="changeFunc">--}}
+                            <div class="card-leg col-md-12 col-sm-offset-4 display-6 text-center">
+                                共{{count($worldLines)}}条分支
                             </div>
+                            @foreach($worldLines as $worldLine)
+                                <hr>
+                                @php($lastid=array_last($worldLine)->id)
+                                <a class="btn btn-black float-left mr-4" href="/instalments/{{$lastid}}">进入世界线</a>
+                                <div class="media slide">
+                                    @foreach($worldLine as $anInstalment)
+                                             <div class="float-left">
+                                            {{--<h5 class="display-7 ml-3">{{$anInstalment->leg}}.</h5>--}}
+                                            <a href="/instalments/{{$anInstalment->id}}" class="mr-3">
+                                                <img class="card-avatar rounded"
+                                                     src="{{$anInstalment->user->avatar}}" alt="64x64">
+                                            </a>
+                                            <h5 class="display-7 mt-2 ml-1">
+                                                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                                {{$anInstalment->votes_count}}
+                                            </h5>
+                                        </div>
+                                    @endforeach
+                                </div>
 
-                        @endforeach
+                            @endforeach
                         @else
                             <div class="card-leg col-md-12 col-sm-offset-4 display-6 text-center">
                                 还未发展出任何世界线
@@ -79,7 +81,8 @@
                 <div class="card-body card-blog">
                     <div class="card-leg col-md-12 col-sm-offset-4 display-6 text-center">
                         从头来过.
-                    </div><hr>
+                    </div>
+                    <hr>
                 @if(Auth::check())
                     {!! Form::open(['url'=>"/instalments",'v-on:submit'=>'onSubmitForm']) !!}
                     {!! Form::hidden('article_id',$article->id) !!}
@@ -103,7 +106,7 @@
                 </div>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 my-3">
                 <div class="card mb-3 card-article-profile">
                     <div class="card-body">
                         <ul class="fa-ul">
@@ -128,6 +131,10 @@
                         @else
                             <article-follow-button article="{{$article->id}}"></article-follow-button>
                         @endguest
+                        @if($worldLines!=null)
+                        <a class="btn btn-black float-right"
+                           href="/instalments/{{last(array_random($worldLines))->id}}">随机世界线</a>
+                        @endif
                         {{--<a href="/articles/{{$instalment->article_id}}" class="btn btn-outline-primary float-right">--}}
                         {{--进入文章--}}
                         {{--</a>--}}

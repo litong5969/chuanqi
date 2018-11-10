@@ -26,7 +26,7 @@
             <div class="card col-md-9 card-blog">
                 <ul class="nav nav-tabs mt-3" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/') }}" >最新世界线</a>
+                        <a class="nav-link" href="{{ url('/') }}">最新世界线</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="#articles" role="tab" data-toggle="tab">文章列表</a>
@@ -42,29 +42,38 @@
                     <div role="tabpanel" class="tab-pane in active" id="articles">
                         @foreach($articles as $article)
                             <div class="media my-4">
-                                <div class="mr-3">
-                                    <a href="">
-                                        <img width="64" src="{{$article->user->avatar}}" alt="{{$article->user->name}}"
-                                             class="card-avatar rounded">
-                                    </a>
-                                </div>
-                                <div class="media-conversation-meta">
+
+                                <div class="media-conversation-meta ml-3">
                                     <span class="media-conversation-replies">
                                         共
                                         <a href="/articles/{{$article->id}}">{{count($article->instalments)}}</a>
                                         棒
                                     </span>
                                 </div>
+
                                 <div class="media-body ml-3">
-                                    <h4 class="mt-0">
-                                        <a href="/articles/{{$article->id}}">
+                                    <div class="mt-0 col-md-12">
+                                        <a class="display-6" href="/articles/{{$article->id}}">
                                             {{$article->title}}
+
+                                        <h6 class="display-7 mt-2" style="color: #3D3D3D">
+                                            {!!   str_limit(strip_tags($article->body), 120, '... ... ') !!}
+                                        </h6>
                                         </a>
-                                    </h4>
-                                    <p>{{$article->user->name}}
-                                        <t class="date float-right">{{$article->created_at->format('Y-m-d')}}</t>
-                                    </p>
+                                    </div>
                                 </div>
+
+                                <div class="blog-signature float-right" align="right">
+                                    <a href="#" class="mx-2 float-right">
+                                        <img class="card-avatar rounded-circle"
+                                             src="{{$article->user->avatar}}" alt="64x64">
+                                    </a>
+                                    <div class="float-right">
+                                        {{$article->user->name}}<br>
+                                        {{$article->created_at->format('Y-m-d')}}
+                                    </div>
+                                </div>
+
                             </div>
                             <hr>
                         @endforeach
