@@ -25,7 +25,8 @@
         computed: {
             text() {
                 return this.count
-            }
+            },
+            icon:  "fa fa-check-circle",
         },
         methods: {
             vote() {

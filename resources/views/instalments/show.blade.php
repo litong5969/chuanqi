@@ -37,7 +37,7 @@
                 </div>
                 <div class="card">
                     <div class="card-body card-blog">
-                        @foreach($worldLine as $anInstalment)
+                        @foreach(array_first($worldLine) as $anInstalment)
                             <div class="card-leg col-md-12 col-sm-offset-4  display-6 text-center">
                                 @if($anInstalment->is_the_last!='T')
                                     {{$anInstalment->leg}}.
@@ -160,7 +160,7 @@
                             <h5 class="display-6" style="text-align: center; color:#ffffff;">
                                 当前世界线</h5>
                             <h5 class="display-6" style="text-align: center; color:#ff7100;">
-                                {{$worldLineValue}}</h5>
+                                {{array_last($worldLine)}}</h5>
                         </div>
                     </div>
                 @endif

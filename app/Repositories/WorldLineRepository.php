@@ -22,8 +22,9 @@ class WorldLineRepository extends InstalmentRepository {
             $instalment = $this->byId($this->getPrevId($instalment->id));
             array_push($worldLine, $instalment);
         }
+        $worldLineValue=$this->worldLineValueById($id);
         $worldLine = array_reverse($worldLine);
-        return $worldLine;
+        return [$worldLine,$worldLineValue];
     }
 
     public function worldLinesByArticleId($id)

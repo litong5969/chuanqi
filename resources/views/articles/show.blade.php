@@ -50,10 +50,10 @@
                             </div>
                             @foreach($worldLines as $worldLine)
                                 <hr>
-                                @php($lastid=array_last($worldLine)->id)
-                                <a class="btn btn-black float-left mr-4" href="/instalments/{{$lastid}}">进入世界线</a>
+{{--                                @php($lastid=array_last(array_first($worldLine))->id)--}}
+                                <a class="btn btn-black float-left mr-4" href="/instalments/{{array_last(array_first($worldLine))->id}}">{{array_last($worldLine)}}</a>
                                 <div class="media slide">
-                                    @foreach($worldLine as $anInstalment)
+                                    @foreach(array_first($worldLine) as $anInstalment)
                                              <div class="float-left">
                                             {{--<h5 class="display-7 ml-3">{{$anInstalment->leg}}.</h5>--}}
                                             <a href="/instalments/{{$anInstalment->id}}" class="mr-3">
@@ -133,7 +133,7 @@
                         @endguest
                         @if($worldLines!=null)
                         <a class="btn btn-black float-right"
-                           href="/instalments/{{last(array_random($worldLines))->id}}">随机世界线</a>
+                           href="/instalments/{{last(array_first(array_random($worldLines)))->id}}">随机世界线</a>
                         @endif
                         {{--<a href="/articles/{{$instalment->article_id}}" class="btn btn-outline-primary float-right">--}}
                         {{--进入文章--}}

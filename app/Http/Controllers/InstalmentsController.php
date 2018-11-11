@@ -32,11 +32,12 @@ class instalmentsController extends Controller {
      * @var
      */
     protected $worldLineRepository;
+
     /**
      * instalmentsController constructor.
      * @param $instalment
      */
-    public function __construct(InstalmentRepository $instalment,WorldLineRepository $worldLineRepository)
+    public function __construct(InstalmentRepository $instalment, WorldLineRepository $worldLineRepository)
     {
         $this->instalment = $instalment;
         $this->worldLine = $worldLineRepository;
@@ -60,10 +61,10 @@ class instalmentsController extends Controller {
             'leg' => $leg,
         ]);
         //连接
-        $this->instalment->instalment2($request->get('prev_id'),$instalment->id);
+        $this->instalment->instalment2($request->get('prev_id'), $instalment->id);
         $instalment->article()->increment('instalments_count');
         $this->instalment->notALast($request->get('prev_id'));
-        return redirect('instalments/'.$instalment->id);
+        return redirect('instalments/' . $instalment->id);
     }
 
     /**
@@ -93,12 +94,11 @@ class instalmentsController extends Controller {
     {
 //        dd($this->worldLine->worldLinesByArticleId($id));
         $instalment = $this->instalment->byId($id);
-        $worldLine=$this->worldLine->worldLineById($id);
-        $worldLineValue = $this->worldLine->worldLineValueById($id);
-        $worldLineCounts=$this->worldLine->worldLineCounts($instalment->article_id);
-        $biggestLeg=$this->instalment->biggestLeg($instalment->article_id);
+        $worldLine = $this->worldLine->worldLineById($id);
+        $worldLineCounts = $this->worldLine->worldLineCounts($instalment->article_id);
+        $biggestLeg = $this->instalment->biggestLeg($instalment->article_id);
         return view('instalments.show', compact(
-            'instalment', 'worldLine', 'worldLineValue','worldLineCounts','biggestLeg'
+            'instalment', 'worldLine', 'worldLineCounts', 'biggestLeg'
         ));
     }
 

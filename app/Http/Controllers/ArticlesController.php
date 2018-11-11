@@ -84,9 +84,9 @@ class ArticlesController extends Controller {
         $worldLineCounts = $this->articleRepository->worldLineCounts($id);
         $biggestLeg = $this->articleRepository->biggestLeg($id);
         $worldLines=$this->worldLine->worldLinesByArticleId($id);
-        $allLastIds = $this->articleRepository->getAllLastIds($id);
+//        $allLastIds = $this->articleRepository->getAllLastIds($id);
 //        dd($worldLines);
-        return view('articles.show', compact('article', 'worldLineCounts', 'biggestLeg','worldLines','allLastIds'));
+        return view('articles.show', compact('article', 'worldLineCounts', 'biggestLeg','worldLines'));
     }
 
     /**
