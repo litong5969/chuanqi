@@ -2976,6 +2976,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -48139,6 +48140,7 @@ var render = function() {
   return _c("button", {
     staticClass: "btn float-left",
     class: { "btn-secondary": _vm.followed, "btn-primary": !_vm.followed },
+    staticStyle: { width: "83px" },
     domProps: { textContent: _vm._s(_vm.text) },
     on: { click: _vm.follow }
   })

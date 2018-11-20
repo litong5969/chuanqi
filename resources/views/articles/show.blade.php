@@ -51,7 +51,7 @@
                             @foreach($worldLines as $worldLine)
                                 <hr>
 {{--                                @php($lastid=array_last(array_first($worldLine))->id)--}}
-                                <a class="btn btn-black float-left mr-4" href="/instalments/{{array_last(array_first($worldLine))->id}}">{{array_last($worldLine)}}</a>
+                                <a class="btn btn-black float-left mr-4"  href="/instalments/{{array_last(array_first($worldLine))->id}}">{{array_last($worldLine)}}</a>
                                 <div class="media slide">
                                     @foreach(array_first($worldLine) as $anInstalment)
                                              <div class="float-left">
@@ -185,8 +185,16 @@
                                 <div class="statics-count">{{$article->user->followers_count}}</div>
                             </div>
                         </div>
-                        <user-follow-button user="{{$article->user_id}}"></user-follow-button>
-                        <send-message class="float-right" user="{{$article->user_id}}"></send-message>
+                        @guest
+                            <a class="btn btn-primary float-left" href={{route('login')}} role="button">关注TA</a>
+                            <a class="btn btn-outline-primary float-right"
+                               href={{route('login')}} role="button">发送私信</a>
+                        @else
+                            <user-follow-button class="float-left"
+                                                user="{{$article->user_id}}"></user-follow-button>
+                            <send-message class="float-right"
+                                          user="{{$article->user_id}}"></send-message>
+                        @endguest
                     </div>
                 </div>
             </div>
