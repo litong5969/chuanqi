@@ -101,7 +101,7 @@
                         {!! Form::submit('提交',['class'=>'btn btn-primary form-control']) !!}
                         {!! Form::close() !!}
                     @else
-                        <a href="/login" class="btn btn-primary btn-block">登录接棒</a>
+                        <a href="/login" class="btn btn-primary btn-block">登录开启新宇宙</a>
                     @endif
                 </div>
 

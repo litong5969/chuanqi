@@ -100,7 +100,7 @@
                     </div>
                     <hr>
                 @if(Auth::check())
-                    {!! Form::open(['url'=>"/instalments",'v-on:submit'=>'onSubmitForm']) !!}
+                    {!! Form::open(['url'=>"/instalments"]) !!}
                     {!! Form::hidden('article_id',$instalment->article->id) !!}
                     {!! Form::hidden('prev_id',$instalment->id) !!}
                     {!! Form::hidden('leg',$instalment->leg) !!}
@@ -109,7 +109,7 @@
                             <!-- UE编辑器容器 -->
                             <script id="container" name="body" type="text/plain">{!!old('body')!!}</script>
                             @if($errors->has('body'))
-                                <ul class="list-group">
+                               if($erross="list-group">
                                     @foreach($errors->get('body') as $error)
                                         <li class="list-group-item list-group-item-danger">{{ $error }}</li>
                                     @endforeach
@@ -127,6 +127,7 @@
             <div class="col-md-3  my-3">
                 <div class="card mb-3 card-article-profile">
                     <div class="card-body">
+
                         <ul class="fa-ul">
                             <li><i class="fa-li fa fa-sitemap" aria-hidden="true"></i>
                                 世界线分支数：{{$worldLineCounts}}</li>
@@ -150,7 +151,7 @@
                             <article-follow-button article="{{$instalment->article->id}}"></article-follow-button>
                         @endguest
                         <a href="/articles/{{$instalment->article_id}}" class="btn btn-outline-primary float-right">
-                            进入文章
+                            返回文章
                         </a>
                     </div>
                 </div>

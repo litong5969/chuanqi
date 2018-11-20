@@ -11271,12 +11271,12 @@ a.tag:hover {
 }
 
 .btn-vote {
-  /*text-align: center; */
+  text-align: center;
   color: #ff7100;
-  /*background: linear-gradient(60deg, #203541, #092a35);*/
-  background: url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png);
-  width: 540px;
-  height: 258px;
+  background: linear-gradient(60deg, #203541, #092a35);
+  /*background: url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png);*/
+  /*width: 540px;*/
+  /*height: 258px;*/
 }
 
 .btn-black:hover {

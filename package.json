@@ -16,15 +16,13 @@
         "jquery": "^3.2",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.4",
-        "popper.js": "^1.12",
-        "vue": "^2.5.7"
+        "popper.js": "^1.12"
     },
     "dependencies": {
         "ajv": "^6.5.4",
         "babel-polyfill": "^6.26.0",
-        "gulp": "^3.9.1",
         "imagemin": "^6.0.0",
-        "simditor": "^2.3.19",
+        "vue": "^2.5.17",
         "vue-image-crop-upload": "^2.5.0"
     }
 }

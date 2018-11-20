@@ -30,9 +30,10 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="{{asset('js/jquery.min.js')}}"></script>
+    {{--<script src="http://cdn.bootcss.com/vue-resource/0.6.1/vue-resource.min.js"></script>--}}
     {{--<script src="{{asset('js/siema.min.js')}}"></script>--}}
-    <script src="{{asset('js/hullabaloo.js')}}"></script>
-    <script type="text/javascript" src="js/hullabaloo.js"></script>
+    {{--<script src="{{asset('js/hullabaloo.js')}}"></script>--}}
+    {{--<script type="text/javascript" src="{{asset('js/hullabaloo.js')}}"></script>--}}
     {{--<script type="text/javascript">--}}
         {{--$.hulla = new hullabaloo();--}}
 

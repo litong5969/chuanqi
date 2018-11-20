@@ -21,7 +21,8 @@
                                 <img width="24" class="media-avatar rounded mr-3" :src="comment.user.avatar">
                                 <div class="media-body">
                                     <h5 class="mt-0">{{comment.user.name}}</h5>
-                                    <p>{{comment.body}}<span class="float-right date">{{comment.created_at.substring(0,10)}}</span></p>
+                                    <p>{{comment.body}}<span class="float-right date">{{comment.created_at}}</span>
+                                    </p>
                                 </div>
                                 <hr>
                             </div>
@@ -30,6 +31,7 @@
                     <div class="modal-footer">
                         <input type="text" class="form-control" v-model="body">
                         <button type="button" class="btn btn-primary" @click="store">评论</button>
+
                     </div>
                 </div>
             </div>
@@ -44,7 +46,7 @@
             return {
                 body: '',
                 comments: [],
-            }
+            };
         },
         computed: {
             dialog() {
@@ -66,18 +68,18 @@
                 }).then(response => {
                     let comment={
                         user:{
-                            name:chuanqi.name,
-                            avatar:chuanqi.avatar
+                            name: chuanqi.name,
+                            avatar: chuanqi.avatar
                         },
                         body:response.data.body
-                    }
-                    this.comments.push(comment)
-                    this.body = ''
-                    this.count ++
-                })
+                    };
+                    this.comments.push(comment);
+                    this.body = '';
+                    this.count++;
+                });
             },
             showCommentsFrom() {
-                this.getComments()
+                this.getComments();
                 $(this.dialogId).modal('show')
             },
             getComments() {

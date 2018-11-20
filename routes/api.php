@@ -30,3 +30,10 @@ Route::post('/message/store','MessagesController@store');
 Route::get('instalment/{id}/comments','CommentsController@instalment');
 Route::get('article/{id}/comments','CommentsController@article');
 Route::post('comment','CommentsController@store');
+
+Route::get('/todos',function(){
+    return response()->json([
+        ['id' => 1, 'title' => 'Learn Vue js', 'completed' => false],
+        ['id' => 2, 'title' => 'Go to shop', 'completed' => true],
+    ])->middleware('cors');
+});

@@ -43,7 +43,7 @@
         methods: {
             store() {
                 axios.post('/api/message/store', {'user': this.user, 'body': this.body}).then(response => {
-                    this.status = response.data.status
+                    this.status = response.data.status;
 
                     setTimeout(function () {
                         $('#modal-send-message').modal('hide')
@@ -53,8 +53,8 @@
                 })
             },
             showSendMessageFrom() {
-                $('#modal-send-message').modal('show')
-                this.body=''
+                $('#modal-send-message').modal('show');
+                this.body='';
                 this.status=false
             }
 

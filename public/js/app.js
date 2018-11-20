@@ -2715,6 +2715,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['type', 'model', 'count'],
@@ -2755,6 +2757,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.comments.push(comment);
                 _this.body = '';
                 _this.count++;
+                _this.$forceUpdate();
             });
         },
         showCommentsFrom: function showCommentsFrom() {
@@ -47477,9 +47480,7 @@ var render = function() {
                           _c("p", [
                             _vm._v(_vm._s(comment.body)),
                             _c("span", { staticClass: "float-right date" }, [
-                              _vm._v(
-                                _vm._s(comment.created_at.substring(0, 10))
-                              )
+                              _vm._v(_vm._s(comment.created_at))
                             ])
                           ])
                         ]),
@@ -48085,16 +48086,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "button",
-    {
-      class: { "btn-info": _vm.voted, "btn-vote": !_vm.voted },
-      staticStyle: { width: "60px" },
-      domProps: { textContent: _vm._s(_vm.text) },
-      on: { click: _vm.vote }
-    },
-    [_c("i", { staticClass: "fa fa-magic", attrs: { "aria-hidden": "true" } })]
-  )
+  return _c("button", {
+    staticClass: "btn",
+    class: { "btn-info": _vm.voted, "btn-outline-info": !_vm.voted },
+    staticStyle: { width: "60px" },
+    domProps: { textContent: _vm._s(_vm.text) },
+    on: { click: _vm.vote }
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -59672,8 +59670,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
-
-window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
+//
+// window.Vue = require('vue');
 //
 // /**
 //  * Next, we will create a fresh Vue application instance and attach it to
