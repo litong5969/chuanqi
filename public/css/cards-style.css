@@ -211,6 +211,7 @@ CARDS
 
 .card-function .button{
     color: #0a001f;
+    width:90px;
 }
 
 .card-function .icon {

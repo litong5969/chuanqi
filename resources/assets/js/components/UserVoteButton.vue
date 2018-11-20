@@ -1,11 +1,12 @@
 <template>
-    <button
-            class="btn"
-            v-bind:class="{'btn-info':voted,'btn-outline-info':!voted}"
-            v-text="text"
-            v-on:click="vote"
-    style="width: 60px">
-    </button>
+    <div>
+        <button
+                class="btn btn-link "
+                style="color:#0a001f;"
+                v-text="text"
+                v-on:click="vote">
+        </button>
+    </div>
 </template>
 
 <script>
@@ -24,7 +25,12 @@
         },
         computed: {
             text() {
-                return this.count
+                if(this.voted){
+                    return this.count +' 已赞'
+                }else{
+                    return this.count +' 赞'
+                }
+
             },
         },
         methods: {

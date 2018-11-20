@@ -63,6 +63,7 @@ class instalmentsController extends Controller {
         //连接
         $this->instalment->instalment2($request->get('prev_id'), $instalment->id);
         $instalment->article()->increment('instalments_count');
+        $instalment->user()->increment('instalments_count');
         $this->instalment->notALast($request->get('prev_id'));
         return redirect('instalments/' . $instalment->id);
     }

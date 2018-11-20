@@ -67,6 +67,7 @@ class ArticlesController extends Controller {
             //多对多操作，写入第三张表
             $article->tags()->attach($tags);
         }
+        user()->increment('articles_count');
         user()->followThis($article->id);
         return redirect()->route('articles.show', [$article->id]);
     }
@@ -135,6 +136,7 @@ class ArticlesController extends Controller {
         $article = $this->articleRepository->byId($id);
         if (Auth::user()->owns($article)) {
             $article->delete();
+            user()->decrement('articles_count');
             return redirect('/articles/');
         }
 

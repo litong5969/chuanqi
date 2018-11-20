@@ -21,4 +21,12 @@ class UsersController extends Controller {
         user()->save();
         return ['url' => user()->avatar];
     }
+    public function back(Request $request)
+    {
+        $url = $request->session()->get('redirectPath');
+
+        $request->session()->forget('redirectPath');
+
+        return redirect($url);
+    }
 }

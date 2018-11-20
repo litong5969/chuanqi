@@ -24,13 +24,19 @@
                                         class="fa fa-magic" aria-hidden="true"></i>
                                 在此接棒</a>
                             @if(Auth::check() && Auth::user()->owns($instalment->article))
-                                <i class="fa fa-pencil float-left icon ml-3" aria-hidden="true"></i>
-                                <a class="btn btn-link float-left button"
-                                   href="/articles/{{$instalment->article->id}}/edit">编辑</a>
-                                <i class="fa fa-times float-left icon  ml-3" aria-hidden="true"></i>
-                                {!! Form::open(['url'=>"/articles/$instalment->article->id",'method'=>'DELETE','class'=>'delete-form float-left']) !!}
-                                {!! Form::submit('删除',['class'=>'btn btn-link float-left button']) !!}
-                                {!! Form::close() !!}
+                                <div class="button float-left ml-4">
+                                <i class="fa fa-pencil icon" aria-hidden="true"></i>
+                                <a class="btn btn-link" style="color:#0a001f;"
+                                   href="/articles/{{$instalment->article->id}}/edit">编辑</a></div>
+                            <div class="button float-left">
+                                <i class="fa fa-times float-left icon" aria-hidden="true"></i>
+                                {!! Form::open([
+                                'url'=>"/articles/{{$instalment->article->id}}",
+                                'method'=>'DELETE',
+                                'class'=>'delete-form float-left',
+                               ]) !!}
+                                {!! Form::submit('删除',['class'=>'btn btn-link float-left', 'style'=>'color:#0a001f;']) !!}
+                                {!! Form::close() !!}</div>
                             @endif
                         </div>
                     </div>
@@ -46,20 +52,19 @@
                                 @endif
                             </div><br>
                             <div class="media my-2">
-                                <div class="px-0">
-                                    <br>
-                                    @guest
-                                        <div class="mx-2 center-block">
-                                            <a class="btn btn-outline-secondary" style="width: 60px"
-                                               href={{route('login')}} role="button">{{$anInstalment->votes_count}}</a>
-                                        </div>
-                                    @else
-                                        <div class="mx-2 center-block">
-                                            <user-vote-button instalment="{{$anInstalment->id}}"
-                                                              count="{{$anInstalment->votes_count}}"></user-vote-button>
-                                        </div>
-                                    @endguest
-                                </div>
+                                {{--<div class="px-0">--}}
+                                    {{--<br>--}}
+                                    {{--@guest--}}
+                                        {{--<div class="mx-2 center-block">--}}
+                                            {{--<a class="btn btn-outline-secondary" style="width: 60px"--}}
+                                               {{--href={{route('login')}} role="button">{{$anInstalment->votes_count}}</a>--}}
+                                        {{--</div>--}}
+                                    {{--@else--}}
+                                        {{--<div class="mx-2 center-block">--}}
+                                          {{----}}
+                                        {{--</div>--}}
+                                    {{--@endguest--}}
+                                {{--</div>--}}
                                 <div class="media-body">
                                     <p class="px-2">{!! $anInstalment->body !!}<br></p>
                                     <div class="mt-1 blog-signature" align="right">
@@ -68,15 +73,19 @@
                                                  src="{{$anInstalment->user->avatar}}" alt="64x64">
                                         </a>
                                         <div class="float-right">
-                                        {{$anInstalment->user->name}}<br>
-                                                 {{$anInstalment->created_at->format('Y-m-d')}}
-                                                                                </div>
+                                            {{$anInstalment->user->name}}<br>
+                                            {{$anInstalment->created_at->format('Y-m-d')}}
+                                        </div>
 
                                     </div>
+                                    @if(Auth::check())
                                     <div class="card-function ml-1">
-
-                                        <div><i class="fa fa-comments-o float-left icon" aria-hidden="true"></i>
-                                            <comments class="float-left button" type="instalment"
+                                        <div class="button float-left"><i class="fa fa-thumbs-o-up float-left icon" aria-hidden="true"></i>
+                                        <user-vote-button class="float-left" instalment="{{$anInstalment->id}}"
+                                                          count="{{$anInstalment->votes_count}}"></user-vote-button>
+                                        </div>
+                                        <div class="button float-left"><i class="fa fa-comments-o float-left icon" aria-hidden="true"></i>
+                                            <comments class="float-left" type="instalment"
                                                       model="{{$anInstalment->id}}"
                                                       count="{{$anInstalment->comments()->count()}}"></comments>
                                         </div>
@@ -85,6 +94,32 @@
                                                     class="fa fa-magic" aria-hidden="true"></i>
                                             在此接棒</a>
                                     </div>
+                                        @else
+                                        <div class="card-function ml-1">
+                                            <div class="button float-left"><i class="fa fa-thumbs-o-up float-left icon" aria-hidden="true"></i>
+                                                <div>
+                                                    <a
+                                                            class="btn btn-link"
+                                                            style="color:#0a001f;"
+                                                            href="/login">{{$anInstalment->votes_count}} 赞
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="button float-left"><i class="fa fa-comments-o float-left icon" aria-hidden="true"></i>
+                                                <div>
+                                                    <a
+                                                            class="btn btn-link"
+                                                            style="color:#0a001f;"
+                                                            href="/login">{{$anInstalment->comments()->count()}} 评论
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <a class="btn btn-link float-left button"
+                                               href="/instalments/{{$anInstalment->id}}"><i
+                                                        class="fa fa-magic" aria-hidden="true"></i>
+                                                在此接棒</a>
+                                        </div>
+                                    @endif
                                 </div>
                                 <hr>
                             </div>
@@ -109,7 +144,8 @@
                             <!-- UE编辑器容器 -->
                             <script id="container" name="body" type="text/plain">{!!old('body')!!}</script>
                             @if($errors->has('body'))
-                               if($erross="list-group">
+                                if($errors="list-group">
+                                <ul>
                                     @foreach($errors->get('body') as $error)
                                         <li class="list-group-item list-group-item-danger">{{ $error }}</li>
                                     @endforeach

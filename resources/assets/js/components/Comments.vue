@@ -10,7 +10,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">
+                        <h4 class="modal-title display-6">
                             评论列表
                         </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -26,6 +26,9 @@
                                 </div>
                                 <hr>
                             </div>
+                        </div>
+                        <div v-if="comments.length<1">
+                            <h5 class="display-5 text-center" style="color: #A7B3C2;">暂无评论.</h5>
                         </div>
                     </div>
                     <div class="modal-footer">
