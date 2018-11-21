@@ -80,13 +80,13 @@ class ArticlesController extends Controller {
      */
     public function show($id)
     {
+
         $this->articleRepository->getAllLastIds($id);
         $article = $this->articleRepository->byIdWithTagsAndInstalments($id);//把搜索到的tag内容附加到结果里
         $worldLineCounts = $this->articleRepository->worldLineCounts($id);
         $biggestLeg = $this->articleRepository->biggestLeg($id);
         $worldLines=$this->worldLine->worldLinesByArticleId($id);
 //        $allLastIds = $this->articleRepository->getAllLastIds($id);
-//        dd($worldLines);
         return view('articles.show', compact('article', 'worldLineCounts', 'biggestLeg','worldLines'));
     }
 

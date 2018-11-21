@@ -16,27 +16,28 @@
                         <div class="card-function ml-1">
                             <i class="fa fa-comments-o float-left icon" aria-hidden="true"></i>
                             <comments type="article" class="float-left"
-                                      model="{{$instalment->article->id}}"
+                                      model="{{$instalment->article_id}}"
                                       count="{{$instalment->article->comments()->count()}}">
                             </comments>
                             <a class="btn btn-link float-left button"
-                               href="/articles/{{$instalment->article->id}}"><i
+                               href="/articles/{{$instalment->article_id}}"><i
                                         class="fa fa-magic" aria-hidden="true"></i>
                                 在此接棒</a>
                             @if(Auth::check() && Auth::user()->owns($instalment->article))
                                 <div class="button float-left ml-4">
                                 <i class="fa fa-pencil icon" aria-hidden="true"></i>
                                 <a class="btn btn-link" style="color:#0a001f;"
-                                   href="/articles/{{$instalment->article->id}}/edit">编辑</a></div>
+                                   href="/articles/{{$instalment->article_id}}/edit">编辑</a></div>
                             <div class="button float-left">
                                 <i class="fa fa-times float-left icon" aria-hidden="true"></i>
                                 {!! Form::open([
-                                'url'=>"/articles/{{$instalment->article->id}}",
-                                'method'=>'DELETE',
-                                'class'=>'delete-form float-left',
-                               ]) !!}
+                            'url'=>"/articles/$instalment->article_id",
+                            'method'=>'DELETE',
+                            'class'=>'delete-form float-left',
+                           ]) !!}
                                 {!! Form::submit('删除',['class'=>'btn btn-link float-left', 'style'=>'color:#0a001f;']) !!}
-                                {!! Form::close() !!}</div>
+                                {!! Form::close() !!}
+                            </div>
                             @endif
                         </div>
                     </div>
@@ -52,19 +53,6 @@
                                 @endif
                             </div><br>
                             <div class="media my-2">
-                                {{--<div class="px-0">--}}
-                                    {{--<br>--}}
-                                    {{--@guest--}}
-                                        {{--<div class="mx-2 center-block">--}}
-                                            {{--<a class="btn btn-outline-secondary" style="width: 60px"--}}
-                                               {{--href={{route('login')}} role="button">{{$anInstalment->votes_count}}</a>--}}
-                                        {{--</div>--}}
-                                    {{--@else--}}
-                                        {{--<div class="mx-2 center-block">--}}
-                                          {{----}}
-                                        {{--</div>--}}
-                                    {{--@endguest--}}
-                                {{--</div>--}}
                                 <div class="media-body">
                                     <p class="px-2">{!! $anInstalment->body !!}<br></p>
                                     <div class="mt-1 blog-signature" align="right">

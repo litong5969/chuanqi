@@ -27,13 +27,20 @@
                                         class="fa fa-magic" aria-hidden="true"></i>
                                 在此接棒</a>
                             @if(Auth::check() && Auth::user()->owns($article))
-                                <i class="fa fa-pencil float-left icon ml-3" aria-hidden="true"></i>
-                                <a class="btn btn-link float-left button"
-                                   href="/articles/{{$article->id}}/edit">编辑</a>
-                                <i class="fa fa-trash float-left icon  ml-3" aria-hidden="true"></i>
-                                {!! Form::open(['url'=>"/articles/$article->id",'method'=>'DELETE','class'=>'delete-form float-left']) !!}
-                                {!! Form::submit('删除',['class'=>'btn btn-link float-left button']) !!}
-                                {!! Form::close() !!}
+                                <div class="button float-left ml-4">
+                                    <i class="fa fa-pencil icon" aria-hidden="true"></i>
+                                    <a class="btn btn-link" style="color:#0a001f;"
+                                       href="/articles/{{$article->id}}/edit">编辑</a></div>
+                                <div class="button float-left">
+                                    <i class="fa fa-times float-left icon" aria-hidden="true"></i>
+                                    {!! Form::open([
+                                    'url'=>"/articles/$article->id",
+                                    'method'=>'DELETE',
+                                    'class'=>'delete-form float-left',
+                                   ]) !!}
+                                    {!! Form::submit('删除',['class'=>'btn btn-link float-left', 'style'=>'color:#0a001f;']) !!}
+                                    {!! Form::close() !!}
+                                </div>
                             @endif
                         </div>
                     </div>
