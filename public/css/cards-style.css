@@ -817,3 +817,17 @@ FONT AWESOME FA CLASS
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+
+@font-face {
+    font-family: 'HYChangLiSongKeBen(Original)W';   /*字体名称*/
+    src:url('../fonts/HYChangLiSongKeBen(Original)W.ttf');      /*字体源文件*/
+
+}
+
+.iFont{
+    font-family:'HYChangLiSongKeBen(Original)W',cursive;
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}

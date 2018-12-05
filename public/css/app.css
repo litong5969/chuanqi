@@ -11310,3 +11310,15 @@ a.tag:hover {
   line-height: 1.2;
 }
 
+@font-face {
+  font-family: 'HYChangLiSongKeBen(Original)W';
+  src: url("/fonts/HYChangLiSongKeBen(Original)W.ttf?99c730751e021c2264e109975ff06a52");
+}
+
+.iFont-4 {
+  font-family: 'HYChangLiSongKeBen(Original)W' ,cursive;
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
