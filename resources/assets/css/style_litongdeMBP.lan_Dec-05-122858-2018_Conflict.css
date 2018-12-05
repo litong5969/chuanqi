@@ -1,0 +1,186 @@
+.card-body.content img {
+    width: 100%;
+}
+
+a.tag {
+    background: #eff6fa;
+    padding: 1px 10px 0;
+    border-radius: 30px;
+    text-decoration: none;
+    margin: 0 5px 5px 0;
+    display: inline-block;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+a.tag:hover {
+    background: #259;
+    color: #fff;
+    text-decoration: none;
+}
+
+.button.is-naked {
+    background: 0 0;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    height: auto;
+}
+
+.actions {
+    display: flex;
+    padding: 10px 20px;
+}
+
+.delete-button {
+    color: #3097D1;
+    text-decoration: none;
+}
+
+.question-follow {
+    text-align: center;
+}
+
+.user-statics, .user-actions {
+    margin-top: 20px;
+}
+
+.user-statics {
+    display: flex;
+    padding: 0 0;
+}
+
+.statics-item {
+    padding: 2px 20px;
+}
+
+.statics-count {
+    color: #0a001f;
+}
+
+.messages-list {
+    margin-top: 80px;
+}
+
+.notifications {
+    position: relative;
+    padding: 8px 15px 8px 25px;
+    color: #666;
+    border: none;
+    border-top: 1px dotted #eee;
+    background: transparent;
+}
+
+.notifications.unread {
+    background: #fff9ea;
+}
+
+.navbar-laravel {
+    background: linear-gradient(100deg, #01aac1, #00649f);
+}
+
+.card-header {
+    background: linear-gradient(90deg, #a7d7c5, #74b49b);
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.media-conversation-meta {
+    float: left;
+}
+
+.media-conversation-replies {
+    font-size: 1em;
+    color: #A7B3C2;
+    padding-top: 10px;
+    disploy: block;
+}
+
+.jumbotron {
+    background: linear-gradient(60deg, #ec407a, #c2185b);
+    margin-bottom: 20px;
+    color: #fff;
+    margin-top: -4px;
+}
+
+.media-conversation-replies a {
+    font-weight: 700;
+    display: block;
+    text-align: center;
+    color: #4b4b4b;
+    font-size: 1.44em;
+    line-height: 1;
+    margin-bottom: -1px;
+}
+
+.media-body a {
+    color: #4b4b4b;
+}
+
+.date {
+    font-size: .7em;
+    color: #A7B3C2;
+    margin-top: 2px;
+    disploy: block;
+}
+
+.inboxcount {
+    font-size: .9em;
+    color: #393e46;
+    disploy: block;
+}
+
+.btn-black {
+    /*text-align: center; */
+    width:96px;
+    color: #ff7100;
+    background: linear-gradient(60deg, #203541, #092a35);
+}
+
+.btn-black:hover {
+    color: #ffffff;
+    background-color: #ff7100;
+    border-color: #ff7100;
+}
+
+.btn-vote {
+    text-align: center;
+    color: #ff7100;
+    background: linear-gradient(60deg, #203541, #092a35);
+    /*background: url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png);*/
+    /*width: 540px;*/
+    /*height: 258px;*/
+}
+
+.btn-black:hover {
+    color: #ffffff;
+    background-color: #ff7100;
+    border-color: #ff7100;
+}
+
+.display-5 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.display-6 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.display-7 {
+     font-size: 1rem;
+     font-weight: 300;
+     line-height: 1.2;
+ }
+
+.display-8 {
+    font-size: 0.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+

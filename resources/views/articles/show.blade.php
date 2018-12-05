@@ -56,9 +56,13 @@
                                 共{{count($worldLines)}}条分支
                             </div>
                             @foreach($worldLines as $worldLine)
+
                                 <hr>
 {{--                                @php($lastid=array_last(array_first($worldLine))->id)--}}
-                                <a class="btn btn-black float-left mr-4"  href="/instalments/{{array_last(array_first($worldLine))->id}}">{{array_last($worldLine)}}</a>
+                            <div>
+
+                                <br><a class="btn btn-black float-left mr-4"  href="/instalments/{{array_last(array_first($worldLine))->id}}">{{array_last($worldLine)}}</a>
+                            </div>
                                 <div class="media slide">
                                     @foreach(array_first($worldLine) as $anInstalment)
                                              <div class="float-left">
