@@ -3,7 +3,7 @@
 @section('content')
     <div class="jumbotron jumbotron-shadow">
         <div class="container">
-            <h1 class="iFont-4">来啊，用故事拯救世界<i class="fa fa-pied-piper-alt" aria-hidden="true"></i>
+            <h1 class="display-4">来啊，用故事拯救世界<i class="fa fa-pied-piper-alt" aria-hidden="true"></i>
                 @guest
                     <a class="m-3 btn btn-success btn-lg float-right" href={{route('register')}} role="button">现在注册</a>
                     <a class="m-3 btn btn-primary btn-lg float-right" href={{route('login')}} role="button">登录</a>
